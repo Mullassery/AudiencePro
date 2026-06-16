@@ -24,8 +24,6 @@
 pub mod engine;
 pub mod streaming;
 pub mod utils;
-
-#[cfg(feature = "python")]
 pub mod python;
 
 pub use engine::{

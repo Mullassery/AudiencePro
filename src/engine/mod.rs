@@ -49,13 +49,13 @@ impl AudienceSegmenterCore {
     }
 
     /// Fit the segmenter on data
-    pub fn fit(&mut self, data: &Array2<f64>) -> Result<()> {
+    pub fn fit(&mut self, _data: &Array2<f64>) -> Result<()> {
         // TODO: Implement fitting logic
         Ok(())
     }
 
     /// Predict cluster assignments
-    pub fn predict(&self, data: &Array2<f64>) -> Result<Vec<usize>> {
+    pub fn predict(&self, _data: &Array2<f64>) -> Result<Vec<usize>> {
         // TODO: Implement prediction logic
         Ok(vec![])
     }
