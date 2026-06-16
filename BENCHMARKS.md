@@ -79,7 +79,7 @@ score = seg.silhouette_score()
 100k customers  [would take ~2.7 hours — cannot be used in production]
 ```
 
-This is the single biggest bottleneck in any sklearn-based segmentation pipeline. AudiencePro's parallelised Rust implementation targets <200ms at 1M customers.
+This is the single biggest bottleneck in any sklearn-based segmentation pipeline. AudiencePro targets <200ms at 1M customers.
 
 ---
 
@@ -104,7 +104,7 @@ This is the single biggest bottleneck in any sklearn-based segmentation pipeline
 | Silhouette | >2.7 hours | 80ms | **>100,000x** |
 | Full pipeline | >2.7 hours | 130ms | **>100,000x** |
 
-The silhouette score is where the difference is most dramatic. sklearn's O(n²) Python loop simply cannot scale. AudiencePro uses a parallelised Rust implementation with SIMD distance calculations.
+The silhouette score is where the difference is most dramatic. sklearn's O(n²) Python loop simply cannot scale. AudiencePro uses a parallelised engine with SIMD distance calculations, exposed as a clean Python API.
 
 ---
 

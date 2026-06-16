@@ -120,8 +120,8 @@ unzip AudiencePro.zip
 cd AudiencePro
 
 # Build from source (requires Rust)
-pip install maturin
-maturin develop
+pip install -e ".[dev]"
+pytest tests/
 ```
 
 **Verify installation:**
@@ -199,21 +199,19 @@ cd AudiencePro
 # Install development dependencies
 pip install -e ".[dev]"
 
-# Install maturin for building Rust extensions
-pip install maturin
+pip install -e ".[dev]"
 
-# Build the Rust extension
-maturin develop
+pytest tests/
 
 # Run tests
 pytest tests/
 
 # Run linting
-cargo fmt
-cargo clippy
+black . && ruff check .
+mypy .
 
 # Run benchmarks
-cargo bench
+pytest tests/ --benchmark-only
 ```
 
 ---
@@ -320,7 +318,7 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 rustup update
 
 # Try building again
-maturin develop
+pytest tests/
 ```
 
 ---
@@ -366,4 +364,3 @@ After installation, check out:
 - 📖 [Documentation](https://audience-pro.readthedocs.io/)
 - 💬 [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
 - 🐛 [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
-- 📧 Email: mullassery@gmail.com

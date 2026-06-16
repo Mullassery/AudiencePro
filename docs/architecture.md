@@ -2,13 +2,13 @@
 
 ## Overview
 
-AudiencePro is a high-performance audience segmentation library written in Rust with Python bindings. This document describes the system architecture.
+AudiencePro is a high-performance Python library for audience segmentation. The performance-critical engine runs natively for speed, but the entire interface is Python. This document describes the system architecture.
 
 ## High-Level Design
 
 ```
 ┌──────────────────────────────────────────────┐
-│         Python API Layer (PyO3)              │
+│              Python API Layer                │
 │  - accept pandas/polars DataFrames           │
 │  - return DataFrames                         │
 │  - sklearn-compatible Estimator protocol     │
@@ -51,7 +51,7 @@ Utility functions:
 - **conversions.rs** — Data type conversions (pandas ↔ Arrow ↔ Rust)
 
 ### `python.rs`
-PyO3 bindings for Python API
+Python API
 
 ## Data Flow
 

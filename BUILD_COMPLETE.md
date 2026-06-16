@@ -311,7 +311,6 @@ python -c "from audience_pro import AudienceSegmenter; print('✅ Ready!')"
 - 📖 [Full Documentation](https://github.com/Mullassery/AudiencePro)
 - 💬 [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
 - 🐛 [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
-- 📧 Email: mullassery@gmail.com
 
 ---
 

@@ -317,7 +317,6 @@ Expected performance after installation:
 - 📖 [Full Documentation](https://github.com/Mullassery/AudiencePro)
 - 🐛 [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
 - 💬 [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
-- 📧 Email: mullassery@gmail.com
 
 ---
 
