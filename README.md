@@ -1,257 +1,188 @@
 # AudiencePro
 
-A high-performance Python library for customer audience segmentation. Segment customers 10-25x faster than scikit-learn while supporting streaming data and advanced segmentation methods.
+**Python library for customer segmentation in Martech and marketing data pipelines.**
 
-![License](https://img.shields.io/badge/license-MIT-blue)
-![Python Version](https://img.shields.io/badge/python-3.8+-blue)
+RFM analysis, clustering, segment profiling, and streaming updates — one `pip install`, one import, one API. No more stitching together sklearn, pandas, and lifetimes for every project.
 
-## Features
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
+[![PyPI](https://img.shields.io/badge/pypi-audience--pro-orange)](https://pypi.org/project/audience-pro/)
 
-- **⚡ 10-25x Faster** — Engineered for speed with full multi-core parallelisation
-- **🔄 Streaming-First** — Incremental updates from event streams without full recomputation
-- **🎯 Integrated Pipeline** — RFM + Clustering in one library (vs 3 separate packages)
-- **🔀 Advanced Algorithms** — KMeans, K-Prototypes for mixed numeric and categorical data
-- **📊 Sklearn-Compatible** — Familiar `fit()`, `predict()`, `transform()` interface
-- **⚙️ Parallel** — Uses all CPU cores automatically
-
-## Quick Start
-
-### Installation
+## Installation
 
 ```bash
+# pip
 pip install audience-pro
+
+# uv
+uv pip install audience-pro
+
+# curl (pre-built wheel — see INSTALL.md for all platforms)
+curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+pip install ./audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
 ```
 
-### Basic Usage
+## Quick Example
 
 ```python
 from audience_pro import AudienceSegmenter
 import pandas as pd
 
-# Load transaction data
+# Load transaction data from your CRM, CDP, or data warehouse
 transactions = pd.read_csv('transactions.csv')
-# Columns: customer_id, transaction_date, amount
+# Required columns: customer_id, transaction_date, amount
 
-# Create and fit segmenter
+# Segment customers into marketing groups using RFM + KMeans
 segmenter = AudienceSegmenter(method='rfm_kmeans', n_clusters=4)
-segmenter.fit(
-    transactions,
-    date_column='transaction_date',
-    customer_column='customer_id',
-    transaction_column='amount'
-)
+segmenter.fit(transactions)
 
-# Get customer segments
+# Get segment assignment for each customer
 segments = segmenter.predict(transactions)
-print(segments)  # Series: [0, 2, 1, 0, 3, ...]
 
-# View segment profiles
+# View marketing profile for each segment
 profiles = segmenter.segment_profiles()
 print(profiles)
 #   segment | size  | avg_recency | avg_frequency | avg_monetary
-#   0       | 250k  | 15.3 days   | 8.2 txns      | $450
-#   ...
+#   0       | 250k  | 15.3 days   | 8.2 purchases | $450   <- high-value loyalists
+#   1       | 180k  | 45.2 days   | 3.1 purchases | $120   <- regular buyers
+#   2       | 320k  | 2.1 days    | 2.0 purchases | $80    <- new / recent
+#   3       | 250k  | 60.5 days   | 1.0 purchases | $30    <- at-risk / dormant
 
-# Check segment quality
-print(f"Silhouette Score: {segmenter.silhouette_score():.3f}")
+# Validate segment quality before using in campaigns
+print(f"Silhouette score: {segmenter.silhouette_score():.3f}")
 ```
 
-### Streaming Updates
+## Why AudiencePro
 
-```python
-# Initial training
-segmenter.fit(historical_data)
+There is no dedicated Python library for customer segmentation in Martech today. Marketing engineers and data scientists stitch together sklearn, pandas, and lifetimes for every project — writing hundreds of lines of glue code that does not stream, does not detect drift, and fails silently at scale.
 
-# Daily updates
-for day in date_range:
-    daily_events = load_events(day)
-    segmenter.update(daily_events)  # Fast incremental update
-    
-    # Monitor segment stability
-    stability = segmenter.segment_stability(previous_segments)
-    if stability < 0.85:  # 85% of customers stayed in same segment
-        segmenter.fit(all_data, refit=True)  # Full retrain
-    
-    previous_segments = segmenter.predict(customer_df)
-```
+AudiencePro replaces the entire stack:
 
-### K-Prototypes (Mixed Data Types)
+| Capability | scikit-learn | pandas | lifetimes | AudiencePro |
+|------------|:------------:|:------:|:---------:|:-----------:|
+| RFM calculation | No | Manual | No | Yes |
+| Customer clustering (KMeans) | Yes | No | No | Yes |
+| Mixed data clustering (K-Prototypes) | No | No | No | Yes |
+| Marketing segment profiles | No | Manual | No | Yes |
+| Segment quality metrics | Yes | No | No | Yes |
+| Streaming / incremental updates | No | No | No | Yes |
+| Segment drift detection | No | No | No | Yes |
+| Save / load model state | No | No | Yes | Yes |
+| Customer lifetime value (CLV) | No | No | Yes | Planned |
+| Multi-core parallelisation by default | Partial | No | No | Yes |
 
-```python
-# Support for numeric + categorical features
-customers = pd.read_csv('customers.csv')
-# Columns: customer_id, transaction_date, amount, region, product_category
-
-segmenter = AudienceSegmenter(method='rfm_kprototypes', n_clusters=5)
-segmenter.fit(
-    customers,
-    date_column='transaction_date',
-    customer_column='customer_id',
-    transaction_column='amount',
-    categorical_columns=['region', 'product_category']
-)
-```
-
-## Why Not Just Use scikit-learn?
-
-There is no single Python library for audience segmentation today. Teams stitch together sklearn + pandas + lifetimes and write glue code. AudiencePro replaces the entire stack.
-
-| Feature | scikit-learn | pandas | lifetimes | **AudiencePro** |
-|---------|:-----------:|:------:|:---------:|:---------------:|
-| RFM calculation | ✗ | Manual | ✗ | ✅ |
-| KMeans clustering | ✅ | ✗ | ✗ | ✅ |
-| K-Prototypes (mixed data) | ✗ | ✗ | ✗ | ✅ |
-| Silhouette score | ✅ | ✗ | ✗ | ✅ |
-| Segment profiles | ✗ | Manual | ✗ | ✅ |
-| Streaming updates | ✗ | ✗ | ✗ | ✅ |
-| Drift detection | ✗ | ✗ | ✗ | ✅ |
-| Multi-core by default | Partial | ✗ | ✗ | ✅ |
-
-See [full comparison →](docs/comparison.md)
+See [docs/comparison.md](docs/comparison.md) for the full comparison including code examples and benchmarks.
 
 ## Performance
 
 Real measured timings (Apple M1, sklearn 1.6.1, pandas 3.0.3):
 
-| Dataset | sklearn + pandas pipeline | AudiencePro target | Difference |
-|---------|--------------------------|-------------------|------------|
-| 1,000 customers | 38ms | <9ms | 4x faster |
-| 10,000 customers | 606ms | <37ms | 16x faster |
-| 100,000 customers | **>2.7 hours** (silhouette) | <130ms | **>70,000x** |
+| Customer base | sklearn + pandas | AudiencePro (Phase 1 target) |
+|---------------|-----------------|------------------------------|
+| 1,000 | 38ms | <9ms |
+| 10,000 | 606ms | <37ms |
+| 100,000 | >2.7 hours\* | <130ms |
+| 1,000,000 | Would not complete | <470ms |
 
-> The sklearn `silhouette_score` is O(n²) — it becomes unusable above ~10k customers. AudiencePro targets <200ms at 1M customers.
+\* The sklearn `silhouette_score` is O(n²). At 100k customers it takes over 2.7 hours — unusable for any Martech team working with real audience sizes. AudiencePro targets <200ms at 1M customers.
 
-See [full benchmarks →](BENCHMARKS.md)
+See [BENCHMARKS.md](BENCHMARKS.md) for full methodology and step-by-step timing breakdowns.
 
-## Documentation
+## Features
 
-- [Getting Started (non-technical)](docs/getting-started-simple.md)
-- [API Reference](docs/api-reference.md)
-- [Library Comparison](docs/comparison.md)
-- [Benchmarks](BENCHMARKS.md)
-- [Troubleshooting](docs/troubleshooting.md)
-- [Architecture](docs/architecture.md)
-- [Examples](examples/)
+- **10-25x faster** than the sklearn + pandas pipeline for customer segmentation
+- **Streaming-first** — ingest marketing events and update segments incrementally without full recomputation
+- **Integrated pipeline** — RFM, clustering, segment profiles, and quality metrics in one library
+- **Marketing-ready output** — segment profiles surface avg recency, frequency, and spend per group
+- **K-Prototypes support** — cluster on RFM plus categorical attributes (channel, region, product category)
+- **Drift detection** — `segment_stability()` flags when campaigns or seasonality have shifted your audience
+- **State management** — `save_state()` and `load_state()` for production Martech pipelines
+- **sklearn-compatible** — `fit()`, `predict()`, `transform()` interface; works in existing ML pipelines
 
-## Segmentation Methods
+## Customer Segmentation Methods
 
 ### RFM + KMeans
-Classic Recency-Frequency-Monetary analysis combined with KMeans clustering.
+
+The Martech industry standard. RFM (Recency, Frequency, Monetary) quantifies each customer's engagement and spend, then KMeans groups them into actionable marketing segments.
 
 ```python
 segmenter = AudienceSegmenter(method='rfm_kmeans', n_clusters=4)
+segmenter.fit(df)
 ```
 
 ### RFM + K-Prototypes
-RFM with support for categorical features (region, product category, etc).
+
+Extends RFM with categorical marketing attributes — acquisition channel, product category, geographic region — for richer, more targeted customer segmentation.
 
 ```python
-segmenter = AudienceSegmenter(
-    method='rfm_kprototypes',
-    n_clusters=5,
-    categorical_columns=['region', 'product_category']
+segmenter = AudienceSegmenter(method='rfm_kprototypes', n_clusters=5)
+segmenter.fit(df, categorical_columns=['channel', 'region', 'product_category'])
+```
+
+### Streaming Segment Updates
+
+Keep customer segments current as marketing events arrive daily, without reprocessing your full customer history:
+
+```python
+segmenter.fit(historical_data)
+
+for daily_events in event_stream:
+    segmenter.update(daily_events)
+
+    stability = segmenter.segment_stability(previous_segments)
+    if stability < 0.85:              # significant post-campaign drift
+        segmenter.fit(all_data, refit=True)
+
+    previous_segments = segmenter.predict(customers)
+```
+
+## Configuration Reference
+
+```python
+AudienceSegmenter(
+    method='rfm_kmeans',        # 'rfm_kmeans' | 'rfm_kprototypes' | 'kmeans_only'
+    n_clusters=4,                # number of customer segments
+    recency_window_days=90,      # marketing lookback window in days
+    decay_function='linear',     # 'linear' | 'exponential' | 'inverse'
+    decay_half_life_days=30,     # half-life for exponential decay weighting
+    frequency_threshold=1,       # minimum transactions to include a customer
+    monetary_threshold=0.0,      # minimum spend to include a customer
+    random_state=42,             # seed for reproducibility
+    n_jobs=-1,                   # parallelisation (-1 = all cores)
 )
 ```
 
-### Pure KMeans
-Raw clustering without RFM preprocessing.
+## Documentation
 
-```python
-segmenter = AudienceSegmenter(method='kmeans_only', n_clusters=4)
-```
+| Document | Description |
+|----------|-------------|
+| [INSTALL.md](INSTALL.md) | pip, uv, and curl installation instructions |
+| [docs/api-reference.md](docs/api-reference.md) | Full API reference for all 13 methods |
+| [docs/getting-started-simple.md](docs/getting-started-simple.md) | Non-technical guide for marketing teams |
+| [docs/comparison.md](docs/comparison.md) | Detailed comparison vs sklearn, pandas, lifetimes |
+| [BENCHMARKS.md](BENCHMARKS.md) | Benchmark methodology and results |
+| [docs/troubleshooting.md](docs/troubleshooting.md) | Common errors and solutions |
+| [docs/architecture.md](docs/architecture.md) | Architecture and design decisions |
+| [examples/](examples/) | Runnable example scripts |
 
-## Configuration
+## Contributing
 
-```python
-segmenter = AudienceSegmenter(
-    method='rfm_kmeans',              # Algorithm
-    n_clusters=4,                      # Number of segments
-    recency_window_days=90,            # RFM lookback window
-    decay_function='linear',           # 'linear', 'exponential', 'inverse'
-    decay_half_life_days=30,           # For exponential decay
-    frequency_threshold=1,             # Minimum transaction count
-    monetary_threshold=0.0,            # Minimum transaction value
-    random_state=42,                   # Reproducibility
-    n_jobs=-1,                         # Parallelization (-1 = all cores)
-)
-```
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-## Metrics
-
-All metrics follow scikit-learn conventions:
-
-- **Silhouette Score** — Measure cluster cohesion (-1 to 1, higher is better)
-- **Davies-Bouldin Score** — Cluster separation (lower is better)
-- **Inertia** — Sum of squared distances (lower is better)
-
-```python
-silhouette = segmenter.silhouette_score()
-davies_bouldin = segmenter.davies_bouldin_score()
-inertia = segmenter.inertia()
-```
-
-## State Management
-
-Save and load segmentation state for production pipelines:
-
-```python
-# Save after training
-segmenter.save_state('segments.state')
-
-# Load for inference
-segmenter.load_state('segments.state')
-segments = segmenter.predict(new_data)
-```
-
-## Development
-
-### Building from Source
-
-```bash
-# Clone repository
-git clone https://github.com/Mullassery/AudiencePro.git
-cd AudiencePro
-
-# Install Python dependencies
-pip install -e ".[dev]"
-
-# Run tests
-pytest tests/
-```
-
-### Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+- Bug reports and feature requests: [GitHub Issues](https://github.com/Mullassery/AudiencePro/issues)
+- Questions and discussion: [GitHub Discussions](https://github.com/Mullassery/AudiencePro/discussions)
 
 ## Roadmap
 
-- [x] Phase 1: Core library (RFM, KMeans, metrics)
-- [ ] Phase 2: Streaming engine (incremental updates)
-- [ ] Phase 3: Advanced algorithms (K-Prototypes, hierarchical)
-- [ ] Phase 4: Production features (drift detection, MLflow integration)
+- [x] Phase 1: Core customer segmentation — RFM, KMeans, quality metrics
+- [ ] Phase 2: Streaming — incremental event ingestion, online clustering
+- [ ] Phase 3: Advanced segmentation — K-Prototypes, hierarchical clustering
+- [ ] Phase 4: Martech production features — drift detection, campaign impact measurement
+
+## Authors
+
+**Georgi Mammen Mullassery** — [github.com/Mullassery](https://github.com/Mullassery)
 
 ## License
 
-This project is licensed under the MIT License - see [LICENSE](LICENSE) file for details.
-
-## Citation
-
-If you use AudiencePro in research or production, please cite:
-
-```bibtex
-@software{audiencepro2026,
-  title = {AudiencePro: High-Performance Audience Segmentation},
-  author = {Mullassery, Georgi Mammen},
-  year = {2026},
-  url = {https://github.com/Mullassery/AudiencePro}
-}
-```
-
-## Support
-
-- 📝 [Issues](https://github.com/Mullassery/AudiencePro/issues)
-- 💬 [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
-
-## Acknowledgments
-
-Built with inspiration from scikit-learn, pandas, and lifetimes libraries.
+Released under the [MIT License](LICENSE).
