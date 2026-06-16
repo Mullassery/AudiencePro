@@ -261,4 +261,4 @@ df['amount'] = pd.to_numeric(df['amount'])
 
 ---
 
-**That's it! You're ready to segment your customers.** 🚀
+**That's it! You're ready to segment your customers.** 

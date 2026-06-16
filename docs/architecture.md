@@ -48,7 +48,7 @@ Incremental/streaming support:
 ### `utils/`
 Utility functions:
 - **validation.rs** — Configuration validation
-- **conversions.rs** — Data type conversions (pandas ↔ Arrow ↔ Rust)
+- **conversions.rs** — Data type conversions (pandas  Arrow  Rust)
 
 ### `python.rs`
 Python API

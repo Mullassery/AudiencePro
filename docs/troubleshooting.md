@@ -242,7 +242,7 @@ print(f"Fit time: {(time.time()-start)*1000:.1f}ms")
    ```python
    # Remove very old transactions
    df = df[df['transaction_date'] > some_cutoff_date]
-   
+
    # Filter low-value transactions
    df = df[df['amount'] > 1.0]
    ```
@@ -252,7 +252,7 @@ print(f"Fit time: {(time.time()-start)*1000:.1f}ms")
    # Look for duplicate transactions
    duplicates = df.duplicated(subset=['customer_id', 'transaction_date']).sum()
    print(f"Duplicate rows: {duplicates}")
-   
+
    # Aggregate if needed
    df = df.groupby(['customer_id', 'transaction_date'])['amount'].sum().reset_index()
    ```
@@ -283,7 +283,7 @@ print(f"Fit time: {(time.time()-start)*1000:.1f}ms")
    # Fit on subset, predict on rest
    df_train = df.sample(frac=0.5)
    df_test = df.drop(df_train.index)
-   
+
    segmenter.fit(df_train)
    segments = segmenter.predict(df_test)
    ```
@@ -292,7 +292,7 @@ print(f"Fit time: {(time.time()-start)*1000:.1f}ms")
    ```python
    # Filter to recent transactions
    df = df[df['transaction_date'] > some_recent_date]
-   
+
    # Or filter to large-value transactions
    df = df[df['amount'] > threshold]
    ```

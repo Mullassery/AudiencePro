@@ -315,10 +315,10 @@ silhouette = segmenter.silhouette_score()           # cached
 
 | Feature | sklearn | AudiencePro | Notes |
 |---------|---------|------------|-------|
-| Algorithm Variety | ✅ 15+ algorithms | 🔶 KMeans, K-Prototypes | Focused on segmentation |
-| Customization | ✅ High | 🔶 Medium | Sensible defaults |
-| Research Features | ✅ Extensive | 🔶 None | Production-focused |
-| Pure Python | ✅ Yes | ❌ Rust+Python | Requires compilation |
+| Algorithm Variety |  15+ algorithms |  KMeans, K-Prototypes | Focused on segmentation |
+| Customization |  High |  Medium | Sensible defaults |
+| Research Features |  Extensive |  None | Production-focused |
+| Pure Python |  Yes |  Rust+Python | Requires compilation |
 
 ### When to Use Each
 
