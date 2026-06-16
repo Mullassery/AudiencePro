@@ -258,7 +258,6 @@ df['amount'] = pd.to_numeric(df['amount'])
 
 - See full [API Reference](api-reference.md) for advanced options
 - Check [Troubleshooting Guide](troubleshooting.md) for detailed errors
-- Email: mullassery@gmail.com
 
 ---
 

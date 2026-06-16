@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - KMeans clustering algorithm with k-means++ initialization
 - Cluster quality metrics (Silhouette, Davies-Bouldin, Inertia)
 - Segment profiling and analysis
-- PyO3 Python bindings with pandas integration
+- Python API with full pandas integration
 - Comprehensive documentation and examples
 
 ### Planned

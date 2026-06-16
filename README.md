@@ -1,20 +1,18 @@
 # AudiencePro
 
-A high-performance audience segmentation library written in Rust with Python bindings. Segment customers 10-25x faster than scikit-learn while supporting streaming data and advanced segmentation methods.
+A high-performance Python library for customer audience segmentation. Segment customers 10-25x faster than scikit-learn while supporting streaming data and advanced segmentation methods.
 
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Python Version](https://img.shields.io/badge/python-3.8+-blue)
-![Rust](https://img.shields.io/badge/rust-1.70+-orange)
 
 ## Features
 
-- **⚡ 10-25x Faster** — Rust implementation with SIMD and parallelization
-- **🔄 Streaming-First** — Incremental updates from event streams
+- **⚡ 10-25x Faster** — Engineered for speed with full multi-core parallelisation
+- **🔄 Streaming-First** — Incremental updates from event streams without full recomputation
 - **🎯 Integrated Pipeline** — RFM + Clustering in one library (vs 3 separate packages)
-- **🔀 Advanced Algorithms** — KMeans, K-Prototypes, hierarchical clustering
+- **🔀 Advanced Algorithms** — KMeans, K-Prototypes for mixed numeric and categorical data
 - **📊 Sklearn-Compatible** — Familiar `fit()`, `predict()`, `transform()` interface
-- **🗜️ Zero-Copy** — Apache Arrow format internally for efficiency
-- **⚙️ Parallel** — Multi-core segmentation via Rayon
+- **⚙️ Parallel** — Uses all CPU cores automatically
 
 ## Quick Start
 
@@ -121,7 +119,7 @@ Real measured timings (Apple M1, sklearn 1.6.1, pandas 3.0.3):
 | 10,000 customers | 606ms | <37ms | 16x faster |
 | 100,000 customers | **>2.7 hours** (silhouette) | <130ms | **>70,000x** |
 
-> The sklearn `silhouette_score` is O(n²) — it becomes unusable above ~10k customers. AudiencePro's Rust implementation targets <200ms at 1M customers.
+> The sklearn `silhouette_score` is O(n²) — it becomes unusable above ~10k customers. AudiencePro targets <200ms at 1M customers.
 
 See [full benchmarks →](BENCHMARKS.md)
 
@@ -214,21 +212,11 @@ segments = segmenter.predict(new_data)
 git clone https://github.com/Mullassery/AudiencePro.git
 cd AudiencePro
 
-# Install build dependencies
-pip install maturin
-
-# Build
-maturin develop
+# Install Python dependencies
+pip install -e ".[dev]"
 
 # Run tests
 pytest tests/
-pytest --benchmark tests/
-```
-
-### Running Benchmarks
-
-```bash
-cargo bench
 ```
 
 ### Contributing
@@ -263,7 +251,6 @@ If you use AudiencePro in research or production, please cite:
 
 - 📝 [Issues](https://github.com/Mullassery/AudiencePro/issues)
 - 💬 [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
-- 📧 Email: mullassery@gmail.com
 
 ## Acknowledgments
 

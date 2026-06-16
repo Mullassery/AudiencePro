@@ -1,6 +1,6 @@
 # Contributing to AudiencePro
 
-Thank you for your interest in contributing to AudiencePro! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to AudiencePro!
 
 ## Code of Conduct
 
@@ -17,18 +17,10 @@ cd AudiencePro
 
 ### Set Up Development Environment
 
+AudiencePro is a Python library. Install it in editable mode to develop:
+
 ```bash
-# Install Rust (if not already installed)
-curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-
-# Install Python dependencies
 pip install -e ".[dev]"
-
-# Install maturin
-pip install maturin
-
-# Build the Rust extension
-maturin develop
 ```
 
 ## Development Workflow
@@ -41,66 +33,50 @@ git checkout -b feature/your-feature-name
 
 ### 2. Make Your Changes
 
-- Follow [Rust API Guidelines](https://rust-lang.github.io/api-guidelines/)
-- Use `cargo fmt` to format code
-- Use `cargo clippy` to check for common mistakes
+- Follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) for Python code
+- Use type hints on all public functions
+- Use Black for formatting and Ruff for linting
 
 ```bash
-cargo fmt
-cargo clippy --all-targets
+black .
+ruff check .
+mypy .
 ```
 
 ### 3. Write Tests
 
-- Add unit tests in `src/` alongside code
-- Add integration tests in `tests/`
-- Maintain >90% code coverage
+- Add unit tests in `tests/`
+- Maintain >90% coverage on the Python API
 
 ```bash
-# Run all tests
-cargo test
 pytest tests/
-
-# Run with coverage
-tarpaulin --out Html
+pytest tests/ --cov=audience_pro
 ```
 
-### 4. Run Benchmarks
+### 4. Update Documentation
 
-Performance regression tests:
-
-```bash
-cargo bench
-```
-
-### 5. Update Documentation
-
-- Update docstrings for public APIs
-- Update README.md if feature changes user-facing API
+- Update docstrings for any changed public API
+- Update README.md if the user-facing API changes
 - Add examples in `examples/`
 
-### 6. Commit Your Changes
+### 5. Commit and Push
 
 ```bash
 git add .
-git commit -m "Brief description of changes"
+git commit -m "feat: add streaming drift detection"
+git push origin feature/your-feature-name
 ```
 
 Follow [conventional commits](https://www.conventionalcommits.org/):
 - `feat:` New feature
 - `fix:` Bug fix
-- `docs:` Documentation
-- `test:` Testing
+- `docs:` Documentation only
+- `test:` Test changes
 - `perf:` Performance improvement
 - `refactor:` Code refactoring
-- `ci:` CI/CD changes
-- `chore:` Build, dependencies
+- `chore:` Build or dependency changes
 
-### 7. Push and Create Pull Request
-
-```bash
-git push origin feature/your-feature-name
-```
+### 6. Open a Pull Request
 
 Create a pull request with a clear description of:
 - What the change does
@@ -110,84 +86,13 @@ Create a pull request with a clear description of:
 ## Pull Request Guidelines
 
 - Keep PRs focused on a single feature or fix
-- Provide clear, concise commit messages
 - Include tests for all new functionality
-- Update documentation as needed
-- Ensure all tests pass
-
-### Review Process
-
+- Ensure all tests pass before requesting review
 - Maintainers will review within 7 days
-- Respond to review comments
-- Push updates to the same branch
-- Get approval before merging
-
-## Coding Standards
-
-### Rust
-
-- Use `rustfmt` (enforced in CI)
-- Use `clippy` for linting
-- Write clear, idiomatic Rust
-- Prefer composition over inheritance
-- Document public APIs with examples
-
-Example:
-
-```rust
-/// Calculate RFM scores for customers.
-///
-/// # Arguments
-/// * `transactions` - Customer transaction data
-/// * `reference_date` - Date for recency calculation
-///
-/// # Returns
-/// Vector of RFM scores
-///
-/// # Example
-/// ```ignore
-/// let rfm = calculate_rfm(transactions, Date::today())?;
-/// ```
-pub fn calculate_rfm(
-    transactions: Vec<Transaction>,
-    reference_date: Date,
-) -> Result<Vec<RFMScore>> {
-    // Implementation
-}
-```
-
-### Python
-
-- Follow [PEP 8](https://www.python.org/dev/peps/pep-0008/)
-- Use type hints
-- Use Black for formatting
-- Use Ruff for linting
-
-```bash
-black src/
-ruff check src/
-mypy src/
-```
 
 ## Testing
 
-### Unit Tests (Rust)
-
-```rust
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_rfm_calculation() {
-        let transactions = vec![/* ... */];
-        let rfm = calculate_rfm(transactions, reference_date).unwrap();
-        assert_eq!(rfm.len(), 5);
-    }
-}
-```
-
-### Integration Tests (Python)
+### Python Integration Tests
 
 ```python
 import pytest
@@ -201,50 +106,32 @@ def test_fit_predict_pipeline():
     assert segments.max() < 4
 ```
 
-### Benchmarking
-
-```bash
-# Run benchmarks
-cargo bench
-
-# Compare against baseline
-cargo bench -- --baseline=main
-```
-
 ## Documentation
 
-- Update docstrings for all public APIs
-- Include examples in docstrings
+- Update docstrings for all changed public APIs
+- Include usage examples in docstrings
 - Update README.md for user-facing changes
 - Add or update examples in `examples/`
 
 ## Reporting Issues
 
-Use the GitHub issue tracker:
+Use the [GitHub issue tracker](https://github.com/Mullassery/AudiencePro/issues):
 
 1. Check existing issues first
 2. Include:
    - Clear description of the issue
-   - Steps to reproduce (for bugs)
-   - Expected vs actual behavior
-   - Environment (OS, Python version, etc.)
-3. Use issue templates when available
+   - Steps to reproduce
+   - Expected vs actual behaviour
+   - Environment (OS, Python version, AudiencePro version)
 
 ## Suggesting Features
 
-- Open an issue with "Feature Request" label
-- Describe the feature and use case
-- Explain why it's needed
-- Link to similar features in other libraries
+- Open an issue with the "Feature Request" label
+- Describe the feature and the use case it addresses
+- Link to similar features in other libraries if applicable
 
 ## License
 
-By contributing, you agree that your contributions will be licensed under the same MIT license as the project.
-
-## Questions?
-
-- Open a GitHub Discussion
-- Email: mullassery@gmail.com
-- Check existing documentation and issues first
+By contributing, you agree your contributions will be licensed under the MIT license.
 
 Thank you for contributing to AudiencePro!

@@ -431,7 +431,6 @@ If you can't find a solution:
 1. **Check the examples:** `examples/` directory
 2. **Read the documentation:** `docs/api-reference.md`
 3. **Open an issue:** https://github.com/Mullassery/AudiencePro/issues
-4. **Email:** mullassery@gmail.com
 
 When reporting issues, include:
 - Python version: `python --version`
