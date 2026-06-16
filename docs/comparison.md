@@ -20,20 +20,20 @@ None of them talk to each other. You have to chain them manually every time.
 
 | Feature | scikit-learn | pandas | lifetimes | **AudiencePro** |
 |---------|:-----------:|:------:|:---------:|:---------------:|
-| **RFM calculation** | ✗ | Manual\* | ✗ | ✅ Built-in |
-| **KMeans clustering** | ✅ | ✗ | ✗ | ✅ |
-| **K-Prototypes (numeric + categorical)** | ✗ | ✗ | ✗ | ✅ |
-| **Silhouette score** | ✅ | ✗ | ✗ | ✅ |
-| **Davies-Bouldin score** | ✅ | ✗ | ✗ | ✅ |
-| **Segment profiles** | ✗ | Manual\* | ✗ | ✅ Built-in |
-| **Streaming / incremental updates** | ✗ | ✗ | ✗ | ✅ |
-| **Segment drift detection** | ✗ | ✗ | ✗ | ✅ |
-| **Save / load model state** | ✗ | ✗ | ✅ | ✅ |
-| **Customer lifetime value (CLV)** | ✗ | ✗ | ✅ | Planned |
-| **One-line fit_predict** | ✅ | ✗ | ✗ | ✅ |
-| **Multi-core parallelisation** | Partial | ✗ | ✗ | ✅ Full |
-| **Zero-copy Arrow data format** | ✗ | ✗ | ✗ | ✅ |
-| **Decay-weighted RFM** | ✗ | ✗ | ✗ | ✅ |
+| **RFM calculation** | No | Manual\* | No | Yes — built-in |
+| **KMeans clustering** | Yes | No | No | Yes |
+| **K-Prototypes (numeric + categorical)** | No | No | No | Yes |
+| **Silhouette score** | Yes | No | No | Yes |
+| **Davies-Bouldin score** | Yes | No | No | Yes |
+| **Segment profiles** | No | Manual\* | No | Yes — built-in |
+| **Streaming / incremental updates** | No | No | No | Yes |
+| **Segment drift detection** | No | No | No | Yes |
+| **Save / load model state** | No | No | Yes | Yes |
+| **Customer lifetime value (CLV)** | No | No | Yes | Planned |
+| **One-line fit_predict** | Yes | No | No | Yes |
+| **Multi-core parallelisation** | Partial | No | No | Yes — all cores |
+| **Zero-copy Arrow data format** | No | No | No | Yes |
+| **Decay-weighted RFM** | No | No | No | Yes |
 
 \* "Manual" means the feature is achievable but requires you to write the code yourself. It is not provided by the library.
 

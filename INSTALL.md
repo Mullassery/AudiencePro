@@ -46,7 +46,7 @@ pip install git+https://github.com/Mullassery/AudiencePro.git
 
 **Verify installation:**
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print('✅ AudiencePro installed!')"
+python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro installed!')"
 ```
 
 ---
@@ -67,14 +67,14 @@ uv pip install --python 3.11+ audience-pro
 ```
 
 **Benefits of uv:**
-- ⚡ 10-100x faster than pip
-- 🔒 Better dependency resolution
-- 📦 Works in virtual environments
-- 🎯 Minimal dependency overhead
+-  10-100x faster than pip
+-  Better dependency resolution
+-  Works in virtual environments
+-  Minimal dependency overhead
 
 **Verify installation:**
 ```bash
-uv run python -c "from audience_pro import AudienceSegmenter; print('✅ AudiencePro installed!')"
+uv run python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro installed!')"
 ```
 
 ---
@@ -126,7 +126,7 @@ pytest tests/
 
 **Verify installation:**
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print('✅ AudiencePro installed!')"
+python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro installed!')"
 ```
 
 ---
@@ -327,13 +327,13 @@ pytest tests/
 
 | Python | Status | Notes |
 |--------|--------|-------|
-| 3.8 | ✅ Supported | Oldest supported version |
-| 3.9 | ✅ Supported | |
-| 3.10 | ✅ Supported | |
-| 3.11 | ✅ Supported | Recommended |
-| 3.12 | ✅ Supported | Recommended |
-| 3.13 | ✅ Supported | Latest stable |
-| 3.14+ | ⏳ Planned | Coming soon |
+| 3.8 |  Supported | Oldest supported version |
+| 3.9 |  Supported | |
+| 3.10 |  Supported | |
+| 3.11 |  Supported | Recommended |
+| 3.12 |  Supported | Recommended |
+| 3.13 |  Supported | Latest stable |
+| 3.14+ |  Planned | Coming soon |
 
 ---
 
@@ -361,6 +361,6 @@ After installation, check out:
 
 ## Support
 
-- 📖 [Documentation](https://audience-pro.readthedocs.io/)
-- 💬 [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
-- 🐛 [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
+-  [Documentation](https://audience-pro.readthedocs.io/)
+-  [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
+-  [Report Issues](https://github.com/Mullassery/AudiencePro/issues)

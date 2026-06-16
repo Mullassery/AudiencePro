@@ -28,38 +28,38 @@ AudienceSegmenter(
   - `"rfm_kmeans"` (default): RFM features + KMeans clustering
   - `"rfm_kprototypes"`: RFM + K-Prototypes for mixed data
   - `"kmeans_only"`: Pure KMeans without RFM
-  
+
 - `n_clusters` (int): Number of segments to create
   - Range: 1-100
   - Default: 4
   - Tip: Use silhouette_score() to optimize
-  
+
 - `recency_window_days` (int): Days to look back for RFM
   - Default: 90
   - Shorter for high-frequency (e-commerce): 30
   - Longer for low-frequency (B2B): 180+
-  
+
 - `decay_function` (str): How to weight recent transactions
   - `"linear"`: Linear decay (default)
   - `"exponential"`: Exponential decay
   - `"inverse"`: Inverse distance decay
-  
+
 - `decay_half_life_days` (int): For exponential/inverse decay
   - Default: 30
   - Ignored for linear decay
-  
+
 - `frequency_threshold` (int): Minimum transaction count
   - Default: 1
   - Increase to filter out one-time customers
-  
+
 - `monetary_threshold` (float): Minimum transaction value
   - Default: 0.0
   - Use to filter low-value transactions
-  
+
 - `random_state` (int): For reproducibility
   - Default: 42
   - Use same value for consistent results
-  
+
 - `n_jobs` (int): Parallel jobs
   - `-1` (default): Use all CPU cores
   - `1`: Single-threaded (for debugging)
@@ -116,15 +116,15 @@ fit(
 - `date_column` (str): Column name for dates
   - Default: "transaction_date"
   - Format: ISO 8601 (YYYY-MM-DD)
-  
+
 - `customer_column` (str): Column name for customer IDs
   - Default: "customer_id"
   - Must be unique per customer
-  
+
 - `transaction_column` (str): Column name for amounts
   - Default: "transaction_amount"
   - Must be numeric (int or float)
-  
+
 - `categorical_columns` (Optional[List[str]]): Categorical features
   - Only for K-Prototypes method
   - Example: ["region", "product_category"]
@@ -363,14 +363,14 @@ update(
 for day in range(30):
     daily_events = get_daily_events(day)
     segmenter.update(daily_events)  # Fast (~1-2ms)
-    
+
     # Check for drift
     current = segmenter.predict(customers)
     stability = segmenter.segment_stability(previous)
-    
+
     if stability < 0.85:  # Significant drift detected
         segmenter.update(all_data, refit=True)  # Full retrain
-    
+
     previous = current
 ```
 
