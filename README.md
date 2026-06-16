@@ -172,13 +172,6 @@ Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before
 - Bug reports and feature requests: [GitHub Issues](https://github.com/Mullassery/AudiencePro/issues)
 - Questions and discussion: [GitHub Discussions](https://github.com/Mullassery/AudiencePro/discussions)
 
-## Roadmap
-
-- [x] Phase 1: Core customer segmentation — RFM, KMeans, quality metrics
-- [ ] Phase 2: Streaming — incremental event ingestion, online clustering
-- [ ] Phase 3: Advanced segmentation — K-Prototypes, hierarchical clustering
-- [ ] Phase 4: Martech production features — drift detection, campaign impact measurement
-
 ## Authors
 
 **Georgi Mammen Mullassery** — [github.com/Mullassery](https://github.com/Mullassery)
