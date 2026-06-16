@@ -1,0 +1,212 @@
+{
+  "version": "0.1.0",
+  "errors": {
+    "KeyError": {
+      "Column '.*' not found in DataFrame": {
+        "pattern": "KeyError.*column.*not found",
+        "causes": [
+          "Column name typo",
+          "Case mismatch (columns are case-sensitive)",
+          "Column doesn't exist in DataFrame"
+        ],
+        "solutions": [
+          "Check df.columns for available columns",
+          "Ensure column name matches exactly (case-sensitive)",
+          "Verify spelling: date_column, customer_column, transaction_column"
+        ],
+        "recovery": "Provide correct column name to fit()",
+        "example": "df = df.rename(columns={'Date': 'transaction_date'})"
+      }
+    },
+    "ValueError": {
+      "Column '.*' contains invalid date values": {
+        "pattern": "ValueError.*date.*invalid",
+        "causes": [
+          "Non-date values in date column",
+          "Wrong date format (not YYYY-MM-DD)",
+          "Null/NaT values in dates"
+        ],
+        "solutions": [
+          "Convert column to datetime: pd.to_datetime(df['column'])",
+          "Check date format is ISO 8601 (YYYY-MM-DD)",
+          "Remove null dates: df = df.dropna(subset=['date_column'])"
+        ],
+        "recovery": "Clean the date column before calling fit()",
+        "example": "df['transaction_date'] = pd.to_datetime(df['transaction_date'])"
+      },
+      "Column '.*' contains non-numeric values": {
+        "pattern": "ValueError.*non-numeric",
+        "causes": [
+          "Amount column contains strings or non-numeric data",
+          "Currency symbols or formatting in amount column",
+          "Null values in amount column"
+        ],
+        "solutions": [
+          "Convert to numeric: pd.to_numeric(df['amount'], errors='coerce')",
+          "Remove currency symbols: df['amount'] = df['amount'].str.replace('$', '')",
+          "Remove null amounts: df = df.dropna(subset=['amount'])"
+        ],
+        "recovery": "Ensure amount column is numeric (int or float)",
+        "example": "df['amount'] = pd.to_numeric(df['amount'], errors='coerce')"
+      },
+      "n_clusters must be >= 1": {
+        "pattern": "ValueError.*n_clusters.*>= 1",
+        "causes": [
+          "n_clusters is 0 or negative",
+          "n_clusters exceeds available customers"
+        ],
+        "solutions": [
+          "Use n_clusters between 1 and 100",
+          "Recommended: 2-10 for most use cases",
+          "Use silhouette_score() to find optimal n_clusters"
+        ],
+        "recovery": "Set n_clusters to valid value (1-100)",
+        "example": "segmenter = AudienceSegmenter(n_clusters=4)"
+      },
+      "recency_window_days must be > 0": {
+        "pattern": "ValueError.*recency_window.*> 0",
+        "causes": [
+          "recency_window_days is 0 or negative"
+        ],
+        "solutions": [
+          "Use positive integer for days",
+          "E-commerce: 30 days, Retail: 90 days, B2B: 180+ days"
+        ],
+        "recovery": "Set recency_window_days to positive integer",
+        "example": "segmenter = AudienceSegmenter(recency_window_days=90)"
+      },
+      "categorical_columns only supported for K-Prototypes": {
+        "pattern": "ValueError.*categorical.*K-Prototypes",
+        "causes": [
+          "Used categorical_columns with rfm_kmeans method",
+          "categorical_columns not None with wrong method"
+        ],
+        "solutions": [
+          "Use method='rfm_kprototypes' when using categorical_columns",
+          "Or remove categorical_columns for rfm_kmeans"
+        ],
+        "recovery": "Switch method to 'rfm_kprototypes'",
+        "example": "segmenter = AudienceSegmenter(method='rfm_kprototypes', categorical_columns=['region'])"
+      }
+    },
+    "TypeError": {
+      "Expected pandas.DataFrame, got .*": {
+        "pattern": "TypeError.*DataFrame",
+        "causes": [
+          "Passed dict, list, or numpy array instead of DataFrame",
+          "Forgot to import pandas"
+        ],
+        "solutions": [
+          "Convert to DataFrame: pd.DataFrame(data)",
+          "Or load from CSV: pd.read_csv('file.csv')",
+          "Ensure pandas is imported"
+        ],
+        "recovery": "Convert input to pandas DataFrame",
+        "example": "df = pd.DataFrame(data_dict)"
+      },
+      "unsupported operand type.*str.*float": {
+        "pattern": "TypeError.*operand.*str.*float",
+        "causes": [
+          "Amount column contains strings",
+          "Trying to add string and numeric values"
+        ],
+        "solutions": [
+          "Convert amount column to numeric",
+          "Check for currency symbols or text"
+        ],
+        "recovery": "Convert amount column to numeric type",
+        "example": "df['amount'] = pd.to_numeric(df['amount'])"
+      }
+    },
+    "ImportError": {
+      "No module named 'audience_pro'": {
+        "pattern": "ImportError.*audience_pro",
+        "causes": [
+          "Package not installed",
+          "Wrong Python environment",
+          "Working in source directory instead of installed package"
+        ],
+        "solutions": [
+          "Install: pip install audience-pro",
+          "Check virtual environment is activated",
+          "Leave source directory: cd ~",
+          "Verify installation: pip show audience-pro"
+        ],
+        "recovery": "Install package and switch environments",
+        "example": "pip install audience-pro && cd ~ && python -c 'from audience_pro import AudienceSegmenter'"
+      },
+      "DLL load failed": {
+        "pattern": "ImportError.*DLL.*failed",
+        "platform": "Windows",
+        "causes": [
+          "Missing Visual C++ redistributables",
+          "Corrupted installation"
+        ],
+        "solutions": [
+          "Install Visual C++ from Microsoft",
+          "Or reinstall Python (includes VC++ runtime)",
+          "Restart IDE/terminal after installation"
+        ],
+        "recovery": "Install VC++ runtime or reinstall Python",
+        "reference": "https://support.microsoft.com/en-us/help/2977003/"
+      }
+    },
+    "MemoryError": {
+      "Unable to allocate .* GB": {
+        "pattern": "MemoryError.*allocate",
+        "causes": [
+          "Dataset too large for available RAM",
+          "Multiple copies of data in memory",
+          "Memory leak from repeated fit() calls"
+        ],
+        "solutions": [
+          "Use sample of data: df.sample(frac=0.1)",
+          "Process in chunks",
+          "Filter to recent data: df = df[df['date'] > cutoff]",
+          "Close/delete unused DataFrames"
+        ],
+        "recovery": "Reduce data size or increase RAM",
+        "example": "df_sample = df.sample(frac=0.1); segmenter.fit(df_sample)"
+      }
+    },
+    "RuntimeError": {
+      "Model not fitted": {
+        "pattern": "RuntimeError.*not fitted",
+        "causes": [
+          "Tried to predict before fit",
+          "Tried to update before fit"
+        ],
+        "solutions": [
+          "Call fit() before predict()",
+          "Call fit() before update()",
+          "Or use fit_predict() for one-step"
+        ],
+        "recovery": "Call fit() first",
+        "example": "segmenter.fit(df); segments = segmenter.predict(df)"
+      }
+    }
+  },
+  "tips": {
+    "prevention": [
+      "Always start with exploratory data analysis: df.head(), df.info(), df.describe()",
+      "Check column names: print(df.columns)",
+      "Validate data types: print(df.dtypes)",
+      "Look for null values: print(df.isnull().sum())",
+      "Set random_state for reproducibility: AudienceSegmenter(random_state=42)"
+    ],
+    "debugging": [
+      "Read the full error traceback, not just the last line",
+      "Check the 'causes' section for common reasons",
+      "Test with a small data sample first",
+      "Use print() statements to debug step-by-step",
+      "Check the example code in API reference"
+    ],
+    "performance": [
+      "Use n_jobs=-1 for multi-core processing",
+      "Profile with: import cProfile",
+      "Check memory usage: df.memory_usage(deep=True).sum()",
+      "Use silhouette_score() to validate results",
+      "Save state for reuse: segmenter.save_state('model.state')"
+    ]
+  }
+}
