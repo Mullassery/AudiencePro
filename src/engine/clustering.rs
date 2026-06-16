@@ -49,7 +49,7 @@ pub fn kprototypes(
 }
 
 /// Assign data points to nearest cluster centers
-pub fn assign_to_clusters(data: &Array2<f64>, centers: &Array2<f64>) -> Result<Vec<usize>> {
+pub fn assign_to_clusters(_data: &Array2<f64>, _centers: &Array2<f64>) -> Result<Vec<usize>> {
     // TODO: Implement assignment
     Ok(vec![])
 }

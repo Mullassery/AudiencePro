@@ -36,4 +36,4 @@ documentation = "https://audience-pro.readthedocs.io"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
-module-name = "audience_pro._core"
+python-packages = ["audience_pro"]

@@ -3,7 +3,7 @@
 use pyo3::prelude::*;
 
 #[pymodule]
-fn _core(py: Python, m: &PyModule) -> PyResult<()> {
+fn _core(m: &Bound<PyModule>) -> PyResult<()> {
     m.add_class::<PyAudienceSegmenter>()?;
     m.add("__version__", crate::VERSION)?;
     Ok(())
@@ -18,14 +18,7 @@ pub struct PyAudienceSegmenter {
 #[pymethods]
 impl PyAudienceSegmenter {
     #[new]
-    #[args(
-        method = "\"rfm_kmeans\"",
-        n_clusters = "4",
-        recency_window_days = "90",
-        decay_function = "\"linear\"",
-        random_state = "42",
-        n_jobs = "-1"
-    )]
+    #[pyo3(signature = (method="rfm_kmeans", n_clusters=4, recency_window_days=90, decay_function="linear", random_state=42, n_jobs=-1))]
     fn new(
         method: &str,
         n_clusters: usize,
@@ -34,26 +27,32 @@ impl PyAudienceSegmenter {
         random_state: u64,
         n_jobs: i32,
     ) -> PyResult<Self> {
+        let _method = method;
+        let _n_clusters = n_clusters;
+        let _recency_window_days = recency_window_days;
+        let _decay_function = decay_function;
+        let _random_state = random_state;
+        let _n_jobs = n_jobs;
         // TODO: Implement initialization
         Ok(PyAudienceSegmenter {})
     }
 
-    fn fit(&mut self, _df: &PyAny) -> PyResult<()> {
+    fn fit(&mut self, _df: &Bound<PyAny>) -> PyResult<()> {
         // TODO: Implement fit
         Ok(())
     }
 
-    fn predict(&self, _df: &PyAny) -> PyResult<PyObject> {
+    fn predict(&self, _df: &Bound<PyAny>) -> PyResult<PyObject> {
         // TODO: Implement predict
         Python::with_gil(|py| Ok(py.None()))
     }
 
-    fn fit_predict(&mut self, _df: &PyAny) -> PyResult<PyObject> {
+    fn fit_predict(&mut self, _df: &Bound<PyAny>) -> PyResult<PyObject> {
         // TODO: Implement fit_predict
         Python::with_gil(|py| Ok(py.None()))
     }
 
-    fn transform(&self, _df: &PyAny) -> PyResult<PyObject> {
+    fn transform(&self, _df: &Bound<PyAny>) -> PyResult<PyObject> {
         // TODO: Implement transform
         Python::with_gil(|py| Ok(py.None()))
     }
@@ -78,12 +77,12 @@ impl PyAudienceSegmenter {
         Ok(0.0)
     }
 
-    fn update(&mut self, _df: &PyAny, _refit: bool) -> PyResult<()> {
+    fn update(&mut self, _df: &Bound<PyAny>, _refit: bool) -> PyResult<()> {
         // TODO: Implement update
         Ok(())
     }
 
-    fn segment_stability(&self, _previous_segments: &PyAny) -> PyResult<f64> {
+    fn segment_stability(&self, _previous_segments: &Bound<PyAny>) -> PyResult<f64> {
         // TODO: Implement segment_stability
         Ok(0.0)
     }
