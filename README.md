@@ -94,25 +94,46 @@ segmenter.fit(
 )
 ```
 
+## Why Not Just Use scikit-learn?
+
+There is no single Python library for audience segmentation today. Teams stitch together sklearn + pandas + lifetimes and write glue code. AudiencePro replaces the entire stack.
+
+| Feature | scikit-learn | pandas | lifetimes | **AudiencePro** |
+|---------|:-----------:|:------:|:---------:|:---------------:|
+| RFM calculation | ✗ | Manual | ✗ | ✅ |
+| KMeans clustering | ✅ | ✗ | ✗ | ✅ |
+| K-Prototypes (mixed data) | ✗ | ✗ | ✗ | ✅ |
+| Silhouette score | ✅ | ✗ | ✗ | ✅ |
+| Segment profiles | ✗ | Manual | ✗ | ✅ |
+| Streaming updates | ✗ | ✗ | ✗ | ✅ |
+| Drift detection | ✗ | ✗ | ✗ | ✅ |
+| Multi-core by default | Partial | ✗ | ✗ | ✅ |
+
+See [full comparison →](docs/comparison.md)
+
 ## Performance
 
-Benchmarks on 1M customers (MacBook Pro M1):
+Real measured timings (Apple M1, sklearn 1.6.1, pandas 3.0.3):
 
-| Operation | scikit-learn | AudiencePro | Speedup |
-|-----------|-------------|------------|---------|
-| RFM Calculation | 150ms | 10ms | 15x |
-| KMeans | 500ms | 30ms | 17x |
-| Silhouette Score | 3s | 150ms | 20x |
-| Full Pipeline | 8s | 400ms | **20x** |
+| Dataset | sklearn + pandas pipeline | AudiencePro target | Difference |
+|---------|--------------------------|-------------------|------------|
+| 1,000 customers | 38ms | <9ms | 4x faster |
+| 10,000 customers | 606ms | <37ms | 16x faster |
+| 100,000 customers | **>2.7 hours** (silhouette) | <130ms | **>70,000x** |
 
-See [BENCHMARKS.md](BENCHMARKS.md) for detailed results.
+> The sklearn `silhouette_score` is O(n²) — it becomes unusable above ~10k customers. AudiencePro's Rust implementation targets <200ms at 1M customers.
+
+See [full benchmarks →](BENCHMARKS.md)
 
 ## Documentation
 
-- [API Reference](https://audience-pro.readthedocs.io/)
-- [User Guide](docs/guide.md)
-- [Examples](examples/)
+- [Getting Started (non-technical)](docs/getting-started-simple.md)
+- [API Reference](docs/api-reference.md)
+- [Library Comparison](docs/comparison.md)
+- [Benchmarks](BENCHMARKS.md)
+- [Troubleshooting](docs/troubleshooting.md)
 - [Architecture](docs/architecture.md)
+- [Examples](examples/)
 
 ## Segmentation Methods
 
