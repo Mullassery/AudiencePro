@@ -10,10 +10,22 @@ ClusterAudienceKit is a Python library that replaces the scikit-learn + pandas +
 
 ## Install
 
+Pick one:
+
 ```bash
 pip install clusteraudiencekit
-# or
-uv pip install clusteraudiencekit
+```
+
+OR
+
+```bash
+uv add clusteraudiencekit
+```
+
+OR
+
+```bash
+curl -sSfL https://raw.githubusercontent.com/Mullassery/ClusterAudienceKit/main/install.sh | sh
 ```
 
 Pre-built wheels for all platforms: [INSTALL.md](INSTALL.md)
@@ -218,6 +230,7 @@ Pull requests: read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 ## License
 
 [MIT](LICENSE)
+
 
 
 
