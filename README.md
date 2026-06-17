@@ -109,6 +109,47 @@ for daily_events in event_stream:
     previous_segments = segmenter.predict(customers)
 ```
 
+### PySpark integration
+
+Use ClusterAudienceKit with Apache Spark DataFrames for large-scale customer segmentation on distributed clusters.
+
+```python
+from pyspark.sql import SparkSession
+import polars as pl
+from clusteraudiencekit import AudienceSegmenter
+
+spark = SparkSession.builder.appName("audience-segmentation").getOrCreate()
+
+# Load customer transaction data from Spark
+spark_df = spark.read.parquet("s3://bucket/transactions/")
+
+# Convert to Polars for segmentation (small-scale, in-memory)
+polars_df = spark_df.select("customer_id", "purchase_amount", "purchase_date") \
+    .toPandas()
+polars_df = pl.from_pandas(polars_df)
+
+# Fit segmentation model
+segmenter = AudienceSegmenter(method='rfm_kmeans', n_clusters=5)
+segmenter.fit(polars_df)
+
+# Get segment assignments
+segments = segmenter.predict(polars_df)
+
+# Write segments back to Spark
+segments_df = spark.createDataFrame(
+    segments.to_pandas(),
+    schema=["customer_id", "segment"]
+)
+segments_df.write.mode("overwrite").parquet("s3://bucket/segments/")
+
+print(f"Segmented {segments_df.count()} customers into {segmenter.n_clusters} segments")
+```
+
+**Note:** For very large datasets, consider:
+- Sampling/filtering in Spark before converting to Polars
+- Running segmentation on aggregated RFM scores per customer (reduces memory footprint)
+- Caching the Polars DataFrame if running multiple predictions
+
 ## Configuration
 
 ```python
@@ -177,5 +218,6 @@ Pull requests: read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 ## License
 
 [MIT](LICENSE)
+
 
 
