@@ -1,10 +1,10 @@
 #!/bin/bash
-# Install AudiencePro from source
+# Install ClusterAudienceKit from source
 # Usage: bash install-from-source.sh
 
 set -e
 
-echo "🚀 Installing AudiencePro from source..."
+echo "🚀 Installing ClusterAudienceKit from source..."
 echo ""
 
 # Check for Rust
@@ -38,12 +38,12 @@ echo "✅ maturin installed"
 echo ""
 
 # Clone if needed
-if [ ! -d "AudiencePro" ]; then
-    echo "📥 Cloning AudiencePro repository..."
-    git clone https://github.com/Mullassery/AudiencePro.git
+if [ ! -d "ClusterAudienceKit" ]; then
+    echo "📥 Cloning ClusterAudienceKit repository..."
+    git clone https://github.com/Mullassery/clusteraudiencekit.git
 fi
 
-cd AudiencePro
+cd ClusterAudienceKit
 
 echo ""
 echo "🔨 Building and installing..."
@@ -53,7 +53,7 @@ echo ""
 echo "✅ Installation complete!"
 echo ""
 echo "Verify installation:"
-python3 -c "from audience_pro import AudienceSegmenter; print('✅ AudiencePro imported successfully!')"
+python3 -c "from clusteraudiencekit import AudienceSegmenter; print('✅ ClusterAudienceKit imported successfully!')"
 
 echo ""
 echo "📚 Development resources:"

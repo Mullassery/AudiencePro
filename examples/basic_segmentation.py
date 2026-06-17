@@ -26,7 +26,7 @@ def generate_sample_data():
 
 def main():
     """Run basic segmentation example."""
-    print("AudiencePro - Basic Segmentation Example")
+    print("ClusterAudienceKit - Basic Segmentation Example")
     print("=" * 50)
 
     # Generate data
@@ -36,7 +36,7 @@ def main():
     print(f"   Columns: {list(transactions.columns)}")
 
     # TODO: Add segmentation code once implementation is complete
-    # from audience_pro import AudienceSegmenter
+    # from clusteraudiencekit import AudienceSegmenter
     #
     # print("\n2. Creating AudienceSegmenter...")
     # segmenter = AudienceSegmenter(method='rfm_kmeans', n_clusters=4)

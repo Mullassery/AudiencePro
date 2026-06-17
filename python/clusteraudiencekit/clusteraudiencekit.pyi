@@ -1,4 +1,4 @@
-"""Type stubs for AudiencePro."""
+"""Type stubs for ClusterAudienceKit."""
 
 from typing import Optional, Literal
 import pandas as pd

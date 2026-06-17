@@ -1,8 +1,8 @@
-# AudiencePro Architecture
+# ClusterAudienceKit Architecture
 
 ## Overview
 
-AudiencePro is a high-performance Python library for audience segmentation. The performance-critical engine runs natively for speed, but the entire interface is Python. This document describes the system architecture.
+ClusterAudienceKit is a high-performance Python library for audience segmentation. The performance-critical engine runs natively for speed, but the entire interface is Python. This document describes the system architecture.
 
 ## High-Level Design
 

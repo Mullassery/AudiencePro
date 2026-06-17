@@ -1,6 +1,6 @@
 # API Reference
 
-Complete API documentation for AudiencePro.
+Complete API documentation for ClusterAudienceKit.
 
 ## AudienceSegmenter
 
@@ -68,7 +68,7 @@ AudienceSegmenter(
 **Example:**
 
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 # Basic segmentation
 segmenter = AudienceSegmenter()
@@ -145,7 +145,7 @@ fit(
 
 ```python
 import pandas as pd
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 # Load data
 df = pd.read_csv('transactions.csv')

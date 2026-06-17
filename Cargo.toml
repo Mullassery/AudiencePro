@@ -1,11 +1,11 @@
 [package]
-name = "audience-pro"
+name = "clusteraudiencekit"
 version = "0.1.0"
 edition = "2021"
 authors = ["Georgi Mammen Mullassery <mullassery@gmail.com>"]
 license = "MIT"
 description = "High-performance audience segmentation engine with Python bindings"
-repository = "https://github.com/Mullassery/AudiencePro"
+repository = "https://github.com/Mullassery/clusteraudiencekit"
 readme = "README.md"
 keywords = ["segmentation", "marketing", "customer", "clustering", "rfm"]
 categories = ["algorithms", "data-structures"]
@@ -34,7 +34,7 @@ name = "benchmarks"
 harness = false
 
 [lib]
-name = "audience_pro"
+name = "clusteraudiencekit"
 crate-type = ["cdylib", "rlib"]
 
 [profile.release]

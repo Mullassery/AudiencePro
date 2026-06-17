@@ -3,7 +3,7 @@ requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "audience-pro"
+name = "clusteraudiencekit"
 version = "0.1.0"
 description = "High-performance audience segmentation engine with Python bindings"
 readme = "README.md"
@@ -30,10 +30,10 @@ docs = [
 ]
 
 [project.urls]
-repository = "https://github.com/Mullassery/AudiencePro"
-documentation = "https://audience-pro.readthedocs.io"
-"Bug Tracker" = "https://github.com/Mullassery/AudiencePro/issues"
+repository = "https://github.com/Mullassery/clusteraudiencekit"
+documentation = "https://clusteraudiencekit.readthedocs.io"
+"Bug Tracker" = "https://github.com/Mullassery/clusteraudiencekit/issues"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]
-python-packages = ["audience_pro"]
+python-packages = ["clusteraudiencekit"]

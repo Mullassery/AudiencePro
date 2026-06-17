@@ -20,14 +20,14 @@ Dividing your customers into groups based on their buying behavior so you can:
 
 **Step 1:** Open terminal/command prompt and type:
 ```bash
-pip install audience-pro
+pip install clusteraudiencekit
 ```
 
 **Step 2:** Press Enter and wait for it to finish
 
 **Verify it worked:**
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print('Success!')"
+python -c "from clusteraudiencekit import AudienceSegmenter; print('Success!')"
 ```
 
 Should see: `Success!`
@@ -38,7 +38,7 @@ If you want installation to be really fast:
 
 ```bash
 pip install uv
-uv pip install audience-pro
+uv pip install clusteraudiencekit
 ```
 
 **That's it!** You're done.
@@ -73,7 +73,7 @@ You need a file with customer transactions. It should look like this:
 
 ```python
 import pandas as pd
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 # Load your CSV file
 df = pd.read_csv('transactions.csv')

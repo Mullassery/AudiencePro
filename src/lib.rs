@@ -1,4 +1,4 @@
-//! AudiencePro: High-performance audience segmentation engine
+//! ClusterAudienceKit: High-performance audience segmentation engine
 //!
 //! This library provides fast customer segmentation using RFM (Recency-Frequency-Monetary)
 //! analysis combined with clustering algorithms. Written in Rust for performance, with
@@ -15,7 +15,7 @@
 //! # Example
 //!
 //! ```ignore
-//! use audience_pro::AudienceSegmenter;
+//! use clusteraudiencekit::AudienceSegmenter;
 //!
 //! let mut segmenter = AudienceSegmenter::new(4);
 //! // Fit and predict...
@@ -39,7 +39,7 @@ pub const VERSION: &str = env!("CARGO_PKG_VERSION");
 
 /// Custom error type for the library
 #[derive(Error, Debug)]
-pub enum AudienceProError {
+pub enum ClusterClusterAudienceKitError {
     #[error("Invalid configuration: {0}")]
     InvalidConfig(String),
 
@@ -59,7 +59,7 @@ pub enum AudienceProError {
     Arrow(String),
 }
 
-pub type Result<T> = std::result::Result<T, AudienceProError>;
+pub type Result<T> = std::result::Result<T, ClusterClusterAudienceKitError>;
 
 #[cfg(test)]
 mod tests {

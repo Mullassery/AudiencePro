@@ -5,7 +5,7 @@
 **Georgi Mammen Mullassery**
 [github.com/Mullassery](https://github.com/Mullassery)
 
-Creator and maintainer of AudiencePro.
+Creator and maintainer of ClusterAudienceKit.
 
 ## Contributing
 

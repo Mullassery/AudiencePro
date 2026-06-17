@@ -1,4 +1,4 @@
-"""Performance tests comparing AudiencePro with sklearn alternatives."""
+"""Performance tests comparing ClusterAudienceKit with sklearn alternatives."""
 
 import pytest
 import pandas as pd
@@ -34,8 +34,8 @@ def generate_transaction_data(n_customers=1000, transactions_per_customer=5):
 
 
 @pytest.mark.benchmark
-class TestAudienceProPerformance:
-    """Performance tests for AudiencePro."""
+class TestClusterAudienceKitPerformance:
+    """Performance tests for ClusterAudienceKit."""
 
     @pytest.fixture
     def sample_data_small(self):
@@ -55,7 +55,7 @@ class TestAudienceProPerformance:
     def test_segmenter_creation(self):
         """Test segmenter instantiation time."""
         pytest.skip("Placeholder - implementation coming in Phase 1")
-        # from audience_pro import AudienceSegmenter
+        # from clusteraudiencekit import AudienceSegmenter
         # start = time.time()
         # segmenter = AudienceSegmenter(n_clusters=4)
         # elapsed = time.time() - start
@@ -64,7 +64,7 @@ class TestAudienceProPerformance:
     def test_fit_performance_small(self, sample_data_small):
         """Test fit performance on 100 customers."""
         pytest.skip("Placeholder - implementation coming in Phase 1")
-        # from audience_pro import AudienceSegmenter
+        # from clusteraudiencekit import AudienceSegmenter
         # segmenter = AudienceSegmenter(n_clusters=4)
         # start = time.time()
         # segmenter.fit(sample_data_small)
@@ -75,7 +75,7 @@ class TestAudienceProPerformance:
     def test_fit_performance_medium(self, sample_data_medium):
         """Test fit performance on 1000 customers."""
         pytest.skip("Placeholder - implementation coming in Phase 1")
-        # from audience_pro import AudienceSegmenter
+        # from clusteraudiencekit import AudienceSegmenter
         # segmenter = AudienceSegmenter(n_clusters=4)
         # start = time.time()
         # segmenter.fit(sample_data_medium)
@@ -86,7 +86,7 @@ class TestAudienceProPerformance:
     def test_predict_performance(self, sample_data_small):
         """Test predict performance."""
         pytest.skip("Placeholder - implementation coming in Phase 1")
-        # from audience_pro import AudienceSegmenter
+        # from clusteraudiencekit import AudienceSegmenter
         # segmenter = AudienceSegmenter(n_clusters=4)
         # segmenter.fit(sample_data_small)
         # start = time.time()
@@ -98,7 +98,7 @@ class TestAudienceProPerformance:
     def test_silhouette_performance(self, sample_data_small):
         """Test silhouette score calculation."""
         pytest.skip("Placeholder - implementation coming in Phase 1")
-        # from audience_pro import AudienceSegmenter
+        # from clusteraudiencekit import AudienceSegmenter
         # segmenter = AudienceSegmenter(n_clusters=4)
         # segmenter.fit(sample_data_small)
         # start = time.time()

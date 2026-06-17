@@ -119,21 +119,21 @@
       }
     },
     "ImportError": {
-      "No module named 'audience_pro'": {
-        "pattern": "ImportError.*audience_pro",
+      "No module named 'clusteraudiencekit'": {
+        "pattern": "ImportError.*clusteraudiencekit",
         "causes": [
           "Package not installed",
           "Wrong Python environment",
           "Working in source directory instead of installed package"
         ],
         "solutions": [
-          "Install: pip install audience-pro",
+          "Install: pip install clusteraudiencekit",
           "Check virtual environment is activated",
           "Leave source directory: cd ~",
-          "Verify installation: pip show audience-pro"
+          "Verify installation: pip show clusteraudiencekit"
         ],
         "recovery": "Install package and switch environments",
-        "example": "pip install audience-pro && cd ~ && python -c 'from audience_pro import AudienceSegmenter'"
+        "example": "pip install clusteraudiencekit && cd ~ && python -c 'from clusteraudiencekit import AudienceSegmenter'"
       },
       "DLL load failed": {
         "pattern": "ImportError.*DLL.*failed",

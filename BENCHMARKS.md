@@ -1,8 +1,8 @@
 # Benchmarks
 
-## How AudiencePro compares to the existing Python approach
+## How ClusterAudienceKit compares to the existing Python approach
 
-Doing customer segmentation in Python today requires **three separate libraries** chained together. AudiencePro replaces the whole chain with one.
+Doing customer segmentation in Python today requires **three separate libraries** chained together. ClusterAudienceKit replaces the whole chain with one.
 
 ---
 
@@ -38,10 +38,10 @@ score = silhouette_score(scaled, labels)
 
 **13 lines. 3 imports. 3 library objects. No streaming. No drift detection.**
 
-With AudiencePro:
+With ClusterAudienceKit:
 
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 seg = AudienceSegmenter(n_clusters=4)
 seg.fit(df)
@@ -79,11 +79,11 @@ score = seg.silhouette_score()
 100k customers  [would take ~2.7 hours — cannot be used in production]
 ```
 
-This is the single biggest bottleneck in any sklearn-based segmentation pipeline. AudiencePro targets <200ms at 1M customers.
+This is the single biggest bottleneck in any sklearn-based segmentation pipeline. ClusterAudienceKit targets <200ms at 1M customers.
 
 ---
 
-## AudiencePro Phase 1 Targets
+## ClusterAudienceKit Phase 1 Targets
 
 > Phase 1 implementation is in progress. The targets below are based on known Rust performance characteristics for these algorithm classes. Actual measured results will replace these once Phase 1 ships.
 
@@ -97,14 +97,14 @@ This is the single biggest bottleneck in any sklearn-based segmentation pipeline
 
 **Target speedups over sklearn at scale:**
 
-| Operation | sklearn (100k) | AudiencePro target (100k) | Speedup |
+| Operation | sklearn (100k) | ClusterAudienceKit target (100k) | Speedup |
 |-----------|---------------|--------------------------|---------|
 | RFM | 38ms | 15ms | ~2.5x |
 | KMeans | 111ms | 30ms | ~4x |
 | Silhouette | >2.7 hours | 80ms | **>100,000x** |
 | Full pipeline | >2.7 hours | 130ms | **>100,000x** |
 
-The silhouette score is where the difference is most dramatic. sklearn's O(n²) Python loop simply cannot scale. AudiencePro uses a parallelised engine with SIMD distance calculations, exposed as a clean Python API.
+The silhouette score is where the difference is most dramatic. sklearn's O(n²) Python loop simply cannot scale. ClusterAudienceKit uses a parallelised engine with SIMD distance calculations, exposed as a clean Python API.
 
 ---
 
@@ -124,7 +124,7 @@ The silhouette score is where the difference is most dramatic. sklearn's O(n²) 
 ## Reproducing These Results
 
 ```bash
-pip install audience-pro scikit-learn pandas lifetimes
+pip install clusteraudiencekit scikit-learn pandas lifetimes
 
 python benchmarks/run_benchmarks.py
 ```

@@ -1,4 +1,4 @@
-#  AudiencePro Successfully Built and Installable
+#  ClusterAudienceKit Successfully Built and Installable
 
 Build Date: June 16, 2026  
 Version: 0.1.0  
@@ -27,17 +27,17 @@ Status:  Ready for Installation
 ### 1️⃣ **pip** (Most Common)
 
 ```bash
-pip install audience-pro
+pip install clusteraudiencekit
 ```
 
 **Verify:**
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print(' Ready!')"
+python -c "from clusteraudiencekit import AudienceSegmenter; print(' Ready!')"
 ```
 
 **Use:**
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 segmenter = AudienceSegmenter(method='rfm_kmeans', n_clusters=4)
 ```
 
@@ -52,15 +52,15 @@ pip install uv
 
 Then:
 ```bash
-uv pip install audience-pro
+uv pip install clusteraudiencekit
 ```
 
 **Or with project config:**
 ```bash
 uv init my-project
 cd my-project
-uv add audience-pro
-uv run python -c "from audience_pro import AudienceSegmenter"
+uv add clusteraudiencekit
+uv run python -c "from clusteraudiencekit import AudienceSegmenter"
 ```
 
 ---
@@ -69,26 +69,26 @@ uv run python -c "from audience_pro import AudienceSegmenter"
 
 **For macOS ARM64 (M1/M2/M3/M4):**
 ```bash
-curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
-pip install ./audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+curl -L -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+pip install ./clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
 ```
 
 **For macOS Intel:**
 ```bash
-curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_x86_64.whl
-pip install ./audience_pro-0.1.0-cp313-cp313-macosx_11_0_x86_64.whl
+curl -L -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_x86_64.whl
+pip install ./clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_x86_64.whl
 ```
 
 **For Linux:**
 ```bash
-curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-linux_x86_64.whl
-pip install ./audience_pro-0.1.0-cp313-cp313-linux_x86_64.whl
+curl -L -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-linux_x86_64.whl
+pip install ./clusteraudiencekit-0.1.0-cp313-cp313-linux_x86_64.whl
 ```
 
 **For Windows:**
 ```bash
-curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-win_amd64.whl
-pip install .\audience_pro-0.1.0-cp313-cp313-win_amd64.whl
+curl -L -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-win_amd64.whl
+pip install .\clusteraudiencekit-0.1.0-cp313-cp313-win_amd64.whl
 ```
 
 ---
@@ -121,11 +121,11 @@ bash scripts/install-curl.sh linux-x86_64 313   # Linux, Python 3.13
 ## What Gets Installed
 
 ```
-audience-pro-0.1.0/
-├── audience_pro/
+clusteraudiencekit-0.1.0/
+├── clusteraudiencekit/
 │   ├── __init__.py              # Python wrapper module
 │   ├── _core.so                 # Compiled Rust extension
-│   └── audience_pro.pyi         # Type stubs for IDE support
+│   └── clusteraudiencekit.pyi         # Type stubs for IDE support
 ├── metadata
 │   ├── METADATA
 │   ├── WHEEL
@@ -142,7 +142,7 @@ audience-pro-0.1.0/
 After installation, the following 13 methods are available:
 
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 import pandas as pd
 
 # Create segmenter
@@ -194,7 +194,7 @@ config = segmenter.get_config()        # Get parameters
 ## Dependency Tree
 
 ```
-audience-pro==0.1.0
+clusteraudiencekit==0.1.0
 ├── pandas>=1.3
 │   ├── numpy>=1.20
 │   └── python-dateutil>=2.8.2
@@ -210,12 +210,12 @@ All dependencies are automatically installed.
 
 ### Quick Test
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print(' Works!')"
+python -c "from clusteraudiencekit import AudienceSegmenter; print(' Works!')"
 ```
 
 ### Full Test
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 import pandas as pd
 from datetime import datetime, timedelta
 
@@ -257,15 +257,15 @@ print(" Ready for use!")
 
 3. **Integrate into Your Project**
    ```python
-   from audience_pro import AudienceSegmenter
+   from clusteraudiencekit import AudienceSegmenter
 
    # Your code here...
    ```
 
 4. **Development (optional)**
    ```bash
-   git clone https://github.com/Mullassery/AudiencePro.git
-   cd AudiencePro
+   git clone https://github.com/Mullassery/clusteraudiencekit.git
+   cd ClusterAudienceKit
    pip install -e ".[dev]"
    pytest tests/
    ```
@@ -274,12 +274,12 @@ print(" Ready for use!")
 
 ## Troubleshooting
 
-**Issue: `ModuleNotFoundError: No module named 'audience_pro'`**
+**Issue: `ModuleNotFoundError: No module named 'clusteraudiencekit'`**
 
 Solution: Make sure you're not in the source directory:
 ```bash
-cd ~  # Leave the AudiencePro source directory
-python -c "from audience_pro import AudienceSegmenter"
+cd ~  # Leave the ClusterAudienceKit source directory
+python -c "from clusteraudiencekit import AudienceSegmenter"
 ```
 
 **Issue: Wrong wheel downloaded for platform**
@@ -294,7 +294,7 @@ python -c "import platform; print(platform.platform())"
 
 Solution: Use python -m pip:
 ```bash
-python -m pip install audience-pro
+python -m pip install clusteraudiencekit
 ```
 
 ---
@@ -314,15 +314,15 @@ Expected performance after installation:
 
 ## Support
 
--  [Full Documentation](https://github.com/Mullassery/AudiencePro)
--  [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
--  [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
+-  [Full Documentation](https://github.com/Mullassery/clusteraudiencekit)
+-  [Report Issues](https://github.com/Mullassery/clusteraudiencekit/issues)
+-  [Discussions](https://github.com/Mullassery/clusteraudiencekit/discussions)
 
 ---
 
 ## Files Generated
 
-- **Wheel**: `target/wheels/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl`
+- **Wheel**: `target/wheels/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl`
 - **Installation Guide**: `INSTALL.md`
 - **Scripts**:
   - `scripts/install-pip.sh`
