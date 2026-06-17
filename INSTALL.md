@@ -1,19 +1,19 @@
-# Installation Guide for AudiencePro
+# Installation Guide for ClusterAudienceKit
 
-AudiencePro can be installed using **pip**, **uv**, or **curl**. Choose the method that best fits your workflow.
+ClusterAudienceKit can be installed using **pip**, **uv**, or **curl**. Choose the method that best fits your workflow.
 
 ## Quick Start
 
 ```bash
 # Using pip
-pip install audience-pro
+pip install clusteraudiencekit
 
 # Using uv
-uv pip install audience-pro
+uv pip install clusteraudiencekit
 
 # Using curl (for local wheel)
-curl -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
-pip install ./audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+curl -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+pip install ./clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
 ```
 
 ---
@@ -26,27 +26,27 @@ The standard Python package manager. Works with any Python environment.
 
 ```bash
 # Install latest version from PyPI
-pip install audience-pro
+pip install clusteraudiencekit
 
 # Install specific version
-pip install audience-pro==0.1.0
+pip install clusteraudiencekit==0.1.0
 
 # Install with development dependencies
-pip install audience-pro[dev]
+pip install clusteraudiencekit[dev]
 
 # Install with documentation dependencies
-pip install audience-pro[docs]
+pip install clusteraudiencekit[docs]
 
 # Upgrade to latest version
-pip install --upgrade audience-pro
+pip install --upgrade clusteraudiencekit
 
 # Install from GitHub (development)
-pip install git+https://github.com/Mullassery/AudiencePro.git
+pip install git+https://github.com/Mullassery/clusteraudiencekit.git
 ```
 
 **Verify installation:**
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro installed!')"
+python -c "from clusteraudiencekit import AudienceSegmenter; print(' ClusterAudienceKit installed!')"
 ```
 
 ---
@@ -59,11 +59,11 @@ Ultra-fast Python package installer. If you don't have `uv` installed yet:
 # Install uv first (if not already installed)
 pip install uv
 
-# Then install AudiencePro
-uv pip install audience-pro
+# Then install ClusterAudienceKit
+uv pip install clusteraudiencekit
 
 # Or use uv's project environment
-uv pip install --python 3.11+ audience-pro
+uv pip install --python 3.11+ clusteraudiencekit
 ```
 
 **Benefits of uv:**
@@ -74,7 +74,7 @@ uv pip install --python 3.11+ audience-pro
 
 **Verify installation:**
 ```bash
-uv run python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro installed!')"
+uv run python -c "from clusteraudiencekit import AudienceSegmenter; print(' ClusterAudienceKit installed!')"
 ```
 
 ---
@@ -87,37 +87,37 @@ Download pre-built wheels and install locally. Useful for air-gapped environment
 
 ```bash
 # For macOS ARM64 (Apple Silicon M1/M2/M3)
-curl -L https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl -o audience_pro.whl
+curl -L https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl -o clusteraudiencekit.whl
 
 # For macOS Intel
-curl -L https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_x86_64.whl -o audience_pro.whl
+curl -L https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_x86_64.whl -o clusteraudiencekit.whl
 
 # For Linux
-curl -L https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-linux_x86_64.whl -o audience_pro.whl
+curl -L https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-linux_x86_64.whl -o clusteraudiencekit.whl
 
 # For Windows
-curl -L https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-win_amd64.whl -o audience_pro.whl
+curl -L https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-win_amd64.whl -o clusteraudiencekit.whl
 
 # Install the downloaded wheel
-pip install ./audience_pro.whl
+pip install ./clusteraudiencekit.whl
 ```
 
 #### Option B: Download from PyPI
 
 ```bash
 # Download from PyPI CDN
-curl -L https://files.pythonhosted.org/packages/.../audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl -o audience_pro.whl
+curl -L https://files.pythonhosted.org/packages/.../clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl -o clusteraudiencekit.whl
 
-pip install ./audience_pro.whl
+pip install ./clusteraudiencekit.whl
 ```
 
 #### Option C: Download Source and Build
 
 ```bash
 # Clone repository
-curl -L https://github.com/Mullassery/AudiencePro/archive/refs/heads/main.zip -o AudiencePro.zip
-unzip AudiencePro.zip
-cd AudiencePro
+curl -L https://github.com/Mullassery/clusteraudiencekit/archive/refs/heads/main.zip -o ClusterAudienceKit.zip
+unzip ClusterAudienceKit.zip
+cd ClusterAudienceKit
 
 # Build from source (requires Rust)
 pip install -e ".[dev]"
@@ -126,7 +126,7 @@ pytest tests/
 
 **Verify installation:**
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro installed!')"
+python -c "from clusteraudiencekit import AudienceSegmenter; print(' ClusterAudienceKit installed!')"
 ```
 
 ---
@@ -143,8 +143,8 @@ python -c "from audience_pro import AudienceSegmenter; print(' AudiencePro insta
 # Using Homebrew (optional)
 brew install python@3.13
 
-# Install AudiencePro
-pip install audience-pro
+# Install ClusterAudienceKit
+pip install clusteraudiencekit
 ```
 
 **Supported Architectures:**
@@ -160,15 +160,15 @@ pip install audience-pro
 ```bash
 # Ubuntu/Debian
 sudo apt-get install python3-pip
-pip install audience-pro
+pip install clusteraudiencekit
 
 # Fedora/RHEL
 sudo dnf install python3-pip
-pip install audience-pro
+pip install clusteraudiencekit
 
 # Arch
 sudo pacman -S python-pip
-pip install audience-pro
+pip install clusteraudiencekit
 ```
 
 ### Windows
@@ -179,22 +179,22 @@ pip install audience-pro
 
 ```bash
 # Using Command Prompt or PowerShell
-pip install audience-pro
+pip install clusteraudiencekit
 
 # Or with uv
-uv pip install audience-pro
+uv pip install clusteraudiencekit
 ```
 
 ---
 
 ## Development Installation
 
-For development or contributing to AudiencePro:
+For development or contributing to ClusterAudienceKit:
 
 ```bash
 # Clone the repository
-git clone https://github.com/Mullassery/AudiencePro.git
-cd AudiencePro
+git clone https://github.com/Mullassery/clusteraudiencekit.git
+cd ClusterAudienceKit
 
 # Install development dependencies
 pip install -e ".[dev]"
@@ -218,7 +218,7 @@ pytest tests/ --benchmark-only
 
 ## Virtual Environments (Recommended)
 
-It's best practice to install AudiencePro in a virtual environment:
+It's best practice to install ClusterAudienceKit in a virtual environment:
 
 ### Using venv
 
@@ -231,8 +231,8 @@ source audience-env/bin/activate  # macOS/Linux
 # or
 audience-env\Scripts\activate  # Windows
 
-# Install AudiencePro
-pip install audience-pro
+# Install ClusterAudienceKit
+pip install clusteraudiencekit
 
 # Deactivate when done
 deactivate
@@ -242,27 +242,27 @@ deactivate
 
 ```bash
 # Create environment
-conda create -n audience-pro python=3.13
+conda create -n clusteraudiencekit python=3.13
 
 # Activate it
-conda activate audience-pro
+conda activate clusteraudiencekit
 
-# Install AudiencePro
-pip install audience-pro
+# Install ClusterAudienceKit
+pip install clusteraudiencekit
 
 # Or use conda-forge if available
-conda install -c conda-forge audience-pro
+conda install -c conda-forge clusteraudiencekit
 ```
 
 ### Using uv with project config
 
 ```bash
 # Create a new project with uv
-uv init my-audience-project
-cd my-audience-project
+uv init my-clusteraudiencekitject
+cd my-clusteraudiencekitject
 
-# Add AudiencePro as a dependency
-uv add audience-pro
+# Add ClusterAudienceKit as a dependency
+uv add clusteraudiencekit
 
 # Run your code
 uv run python your_script.py
@@ -272,16 +272,16 @@ uv run python your_script.py
 
 ## Troubleshooting
 
-### "ModuleNotFoundError: No module named 'audience_pro'"
+### "ModuleNotFoundError: No module named 'clusteraudiencekit'"
 
-**Solution:** Make sure you're not in the AudiencePro source directory when running Python.
+**Solution:** Make sure you're not in the ClusterAudienceKit source directory when running Python.
 
 ```bash
 # Don't do this:
-cd ~/AudiencePro && python -c "import audience_pro"
+cd ~/ClusterAudienceKit && python -c "import clusteraudiencekit"
 
 # Do this instead:
-cd ~ && python -c "import audience_pro"
+cd ~ && python -c "import clusteraudiencekit"
 ```
 
 ### "ImportError: DLL load failed (Windows)"
@@ -303,7 +303,7 @@ cd ~ && python -c "import audience_pro"
 python --version
 
 # Install compatible wheel
-pip install --upgrade audience-pro
+pip install --upgrade clusteraudiencekit
 ```
 
 ### Building from source fails
@@ -339,14 +339,14 @@ pytest tests/
 
 ## Uninstall
 
-To remove AudiencePro:
+To remove ClusterAudienceKit:
 
 ```bash
 # Using pip
-pip uninstall audience-pro
+pip uninstall clusteraudiencekit
 
 # Using uv
-uv pip uninstall audience-pro
+uv pip uninstall clusteraudiencekit
 ```
 
 ---
@@ -355,12 +355,12 @@ uv pip uninstall audience-pro
 
 After installation, check out:
 - [Quick Start Guide](README.md#quick-start)
-- [API Documentation](https://audience-pro.readthedocs.io/)
+- [API Documentation](https://clusteraudiencekit.readthedocs.io/)
 - [Examples](examples/)
 - [Contributing Guide](CONTRIBUTING.md)
 
 ## Support
 
--  [Documentation](https://audience-pro.readthedocs.io/)
--  [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
--  [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
+-  [Documentation](https://clusteraudiencekit.readthedocs.io/)
+-  [Discussions](https://github.com/Mullassery/clusteraudiencekit/discussions)
+-  [Report Issues](https://github.com/Mullassery/clusteraudiencekit/issues)

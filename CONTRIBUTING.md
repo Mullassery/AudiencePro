@@ -1,6 +1,6 @@
-# Contributing to AudiencePro
+# Contributing to ClusterAudienceKit
 
-Thank you for your interest in contributing to AudiencePro!
+Thank you for your interest in contributing to ClusterAudienceKit!
 
 ## Code of Conduct
 
@@ -11,13 +11,13 @@ Be respectful and constructive in all interactions. We're committed to providing
 ### Fork and Clone
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/AudiencePro.git
-cd AudiencePro
+git clone https://github.com/YOUR_USERNAME/clusteraudiencekit.git
+cd clusteraudiencekit
 ```
 
 ### Set Up Development Environment
 
-AudiencePro is a Python library. Install it in editable mode to develop:
+ClusterAudienceKit is a Python library. Install it in editable mode to develop:
 
 ```bash
 pip install -e ".[dev]"
@@ -50,7 +50,7 @@ mypy .
 
 ```bash
 pytest tests/
-pytest tests/ --cov=audience_pro
+pytest tests/ --cov=clusteraudiencekit
 ```
 
 ### 4. Update Documentation
@@ -96,7 +96,7 @@ Create a pull request with a clear description of:
 
 ```python
 import pytest
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 def test_fit_predict_pipeline():
     segmenter = AudienceSegmenter(n_clusters=4)
@@ -115,14 +115,14 @@ def test_fit_predict_pipeline():
 
 ## Reporting Issues
 
-Use the [GitHub issue tracker](https://github.com/Mullassery/AudiencePro/issues):
+Use the [GitHub issue tracker](https://github.com/Mullassery/clusteraudiencekit/issues):
 
 1. Check existing issues first
 2. Include:
    - Clear description of the issue
    - Steps to reproduce
    - Expected vs actual behaviour
-   - Environment (OS, Python version, AudiencePro version)
+   - Environment (OS, Python version, ClusterAudienceKit version)
 
 ## Suggesting Features
 
@@ -134,4 +134,4 @@ Use the [GitHub issue tracker](https://github.com/Mullassery/AudiencePro/issues)
 
 By contributing, you agree your contributions will be licensed under the MIT license.
 
-Thank you for contributing to AudiencePro!
+Thank you for contributing to ClusterAudienceKit!

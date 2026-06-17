@@ -1,14 +1,14 @@
-# Documentation Gap Analysis for AudiencePro
+# Documentation Gap Analysis for ClusterAudienceKit
 
 **Analysis Date:** June 16, 2026  
-**Project:** AudiencePro v0.1.0  
+**Project:** ClusterAudienceKit v0.1.0  
 **Status:** Development Release
 
 ---
 
 ## Executive Summary
 
-AudiencePro has strong foundational documentation but **lacks critical sections for both human users and AI agents**. This analysis identifies 23 major gaps organized by category and severity.
+ClusterAudienceKit has strong foundational documentation but **lacks critical sections for both human users and AI agents**. This analysis identifies 23 major gaps organized by category and severity.
 
 ### Quick Stats
 -  **Strengths:** Quick start, installation methods, architecture, performance benchmarks
@@ -105,7 +105,7 @@ AudiencePro has strong foundational documentation but **lacks critical sections 
 
 **Required:**
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 # Example: Proper error handling
 try:
@@ -238,7 +238,7 @@ cust_002    | 2026-01-20      | 75.50
 # Example: SQL integration
 import pandas as pd
 from sqlalchemy import create_engine
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 engine = create_engine('postgresql://...')
 transactions = pd.read_sql(
@@ -389,7 +389,7 @@ def fit(
     Examples
     --------
     >>> import pandas as pd
-    >>> from audience_pro import AudienceSegmenter
+    >>> from clusteraudiencekit import AudienceSegmenter
     >>> 
     >>> df = pd.DataFrame({
     ...     'customer_id': ['c1', 'c2', 'c3'],
@@ -458,7 +458,7 @@ category: "Tutorials"
 # examples/basic_segmentation.py
 
 import pandas as pd
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 # Setup: Create sample data
 df = pd.DataFrame({
@@ -541,7 +541,7 @@ Create `docs/error-catalog.json`:
 ### Memory Profiling
 ```python
 from memory_profiler import profile
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 @profile
 def segment_customers():
@@ -643,7 +643,7 @@ for day in range(30):
 ```dockerfile
 FROM python:3.11-slim
 WORKDIR /app
-RUN pip install audience-pro
+RUN pip install clusteraudiencekit
 COPY app.py .
 EXPOSE 8000
 CMD ["python", "app.py"]
@@ -652,7 +652,7 @@ CMD ["python", "app.py"]
 ### Model Serving with FastAPI
 ```python
 from fastapi import FastAPI
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 import pickle
 
 app = FastAPI()
@@ -693,7 +693,7 @@ def health():
 # Repository Metadata
 
 ## Project Information
-- Name: AudiencePro
+- Name: ClusterAudienceKit
 - Type: Python Library + Rust Core
 - Purpose: High-performance audience segmentation
 - Maturity: Alpha/Development
@@ -753,7 +753,7 @@ labels: bug
 ## Environment
 - OS: [Windows/macOS/Linux]
 - Python: [version]
-- AudiencePro: [version]
+- ClusterAudienceKit: [version]
 - pandas: [version]
 
 ## Error Message
@@ -940,7 +940,7 @@ docs/
 ```yaml
 ---
 title: "Basic Segmentation"
-description: "Learn how to segment customers with AudiencePro"
+description: "Learn how to segment customers with ClusterAudienceKit"
 keywords: ["rfm", "segmentation", "clustering", "customers"]
 search_weight: 1.0
 topic: "tutorials"
@@ -1086,7 +1086,7 @@ related:
 
 ## Conclusion
 
-AudiencePro has **solid foundational documentation** but **critical gaps in**:
+ClusterAudienceKit has **solid foundational documentation** but **critical gaps in**:
 
 1. **API Documentation** - Users can't fully understand the API
 2. **Error Handling** - Debugging is painful without guides

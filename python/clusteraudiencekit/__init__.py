@@ -1,10 +1,10 @@
-"""AudiencePro: High-performance audience segmentation library."""
+"""ClusterAudienceKit: High-performance audience segmentation library."""
 
 try:
     from ._core import PyAudienceSegmenter as AudienceSegmenter
 except ImportError:
     raise ImportError(
-        "AudiencePro native extension not found. "
+        "ClusterAudienceKit native extension not found. "
         "Please ensure the package is installed correctly."
     )
 

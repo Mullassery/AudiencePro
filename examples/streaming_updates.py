@@ -7,7 +7,7 @@ from datetime import datetime, timedelta
 #
 # def streaming_example():
 #     """Demonstrate incremental updates from streaming data."""
-#     from audience_pro import AudienceSegmenter
+#     from clusteraudiencekit import AudienceSegmenter
 #
 #     # Initial training on historical data
 #     print("1. Training on historical data...")
@@ -39,7 +39,7 @@ from datetime import datetime, timedelta
 
 def main():
     """Run streaming example."""
-    print("AudiencePro - Streaming Updates Example")
+    print("ClusterAudienceKit - Streaming Updates Example")
     print("=" * 50)
     print("\nThis example demonstrates incremental segmentation updates.")
     print("Implementation in progress...")

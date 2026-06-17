@@ -1,6 +1,6 @@
-# How AudiencePro Compares to Existing Libraries
+# How ClusterAudienceKit Compares to Existing Libraries
 
-There is no single Python library for audience segmentation today. Instead, teams stitch together 2–3 separate libraries and write glue code. AudiencePro replaces the whole stack.
+There is no single Python library for audience segmentation today. Instead, teams stitch together 2–3 separate libraries and write glue code. ClusterAudienceKit replaces the whole stack.
 
 ---
 
@@ -18,7 +18,7 @@ None of them talk to each other. You have to chain them manually every time.
 
 ## Feature Comparison
 
-| Feature | scikit-learn | pandas | lifetimes | **AudiencePro** |
+| Feature | scikit-learn | pandas | lifetimes | **ClusterAudienceKit** |
 |---------|:-----------:|:------:|:---------:|:---------------:|
 | **RFM calculation** | No | Manual\* | No | Yes — built-in |
 | **KMeans clustering** | Yes | No | No | Yes |
@@ -65,10 +65,10 @@ score  = silhouette_score(scaled, labels)
 
 ---
 
-**Same result with AudiencePro:**
+**Same result with ClusterAudienceKit:**
 
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 seg = AudienceSegmenter(n_clusters=4)
 seg.fit(df)
@@ -95,7 +95,7 @@ score = seg.silhouette_score()
 - You specifically need Customer Lifetime Value (BG/NBD or Gamma-Gamma models)
 - Your primary question is "how much will this customer spend?"
 
-### Use AudiencePro when:
+### Use ClusterAudienceKit when:
 - You want RFM + segmentation in one library
 - You're processing large customer bases (10k+ customers)
 - You need real-time or streaming updates
@@ -119,11 +119,11 @@ All numbers below are **real measurements** (Apple M1, sklearn 1.6.1, pandas 3.0
 
 The sklearn silhouette score is O(n²). It calculates pairwise distances between every customer pair. At 100k customers that is 10 billion distance calculations in Python loops.
 
-AudiencePro targets <200ms at 1M customers using SIMD distance calculations in Rust, parallelised across all CPU cores.
+ClusterAudienceKit targets <200ms at 1M customers using SIMD distance calculations in Rust, parallelised across all CPU cores.
 
-### Full pipeline comparison (measured sklearn vs AudiencePro targets)
+### Full pipeline comparison (measured sklearn vs ClusterAudienceKit targets)
 
-| Dataset | sklearn pipeline | AudiencePro target | Difference |
+| Dataset | sklearn pipeline | ClusterAudienceKit target | Difference |
 |---------|----------------|-------------------|------------|
 | 1,000 customers | 38ms | <9ms | **4x faster** |
 | 10,000 customers | 606ms | <37ms | **16x faster** |
@@ -132,16 +132,16 @@ AudiencePro targets <200ms at 1M customers using SIMD distance calculations in R
 
 ---
 
-## What AudiencePro Does Not Replace
+## What ClusterAudienceKit Does Not Replace
 
-- **scikit-learn** for general machine learning — AudiencePro is specialised for customer segmentation, not a general ML toolkit
+- **scikit-learn** for general machine learning — ClusterAudienceKit is specialised for customer segmentation, not a general ML toolkit
 - **lifetimes** for CLV modelling — CLV is a planned feature but not in Phase 1
-- **pandas** for data exploration and transformation — use pandas to prepare and explore your data, then hand it to AudiencePro for segmentation
+- **pandas** for data exploration and transformation — use pandas to prepare and explore your data, then hand it to ClusterAudienceKit for segmentation
 
 The typical production stack looks like:
 
 ```
-pandas (data prep) → AudiencePro (segmentation) → your marketing platform
+pandas (data prep) → ClusterAudienceKit (segmentation) → your marketing platform
 ```
 
 Not:

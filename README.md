@@ -1,4 +1,4 @@
-# AudiencePro
+# ClusterAudienceKit
 
 **Python library for customer segmentation in Martech and marketing data pipelines.**
 
@@ -6,26 +6,26 @@ RFM analysis, clustering, segment profiling, and streaming updates — one `pip 
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
-[![PyPI](https://img.shields.io/badge/pypi-audience--pro-orange)](https://pypi.org/project/audience-pro/)
+[![PyPI](https://img.shields.io/badge/pypi-clusteraudiencekit-orange)](https://pypi.org/project/clusteraudiencekit/)
 
 ## Installation
 
 ```bash
 # pip
-pip install audience-pro
+pip install clusteraudiencekit
 
 # uv
-uv pip install audience-pro
+uv pip install clusteraudiencekit
 
 # curl (pre-built wheel — see INSTALL.md for all platforms)
-curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
-pip install ./audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+curl -L -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+pip install ./clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
 ```
 
 ## Quick Example
 
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 import pandas as pd
 
 # Load transaction data from your CRM, CDP, or data warehouse
@@ -52,13 +52,13 @@ print(profiles)
 print(f"Silhouette score: {segmenter.silhouette_score():.3f}")
 ```
 
-## Why AudiencePro
+## Why ClusterAudienceKit
 
 There is no dedicated Python library for customer segmentation in Martech today. Marketing engineers and data scientists stitch together sklearn, pandas, and lifetimes for every project — writing hundreds of lines of glue code that does not stream, does not detect drift, and fails silently at scale.
 
-AudiencePro replaces the entire stack:
+ClusterAudienceKit replaces the entire stack:
 
-| Capability | scikit-learn | pandas | lifetimes | AudiencePro |
+| Capability | scikit-learn | pandas | lifetimes | ClusterAudienceKit |
 |------------|:------------:|:------:|:---------:|:-----------:|
 | RFM calculation | No | Manual | No | Yes |
 | Customer clustering (KMeans) | Yes | No | No | Yes |
@@ -77,14 +77,14 @@ See [docs/comparison.md](docs/comparison.md) for the full comparison including c
 
 Real measured timings (Apple M1, sklearn 1.6.1, pandas 3.0.3):
 
-| Customer base | sklearn + pandas | AudiencePro (Phase 1 target) |
+| Customer base | sklearn + pandas | ClusterAudienceKit (Phase 1 target) |
 |---------------|-----------------|------------------------------|
 | 1,000 | 38ms | <9ms |
 | 10,000 | 606ms | <37ms |
 | 100,000 | >2.7 hours\* | <130ms |
 | 1,000,000 | Would not complete | <470ms |
 
-\* The sklearn `silhouette_score` is O(n²). At 100k customers it takes over 2.7 hours — unusable for any Martech team working with real audience sizes. AudiencePro targets <200ms at 1M customers.
+\* The sklearn `silhouette_score` is O(n²). At 100k customers it takes over 2.7 hours — unusable for any Martech team working with real audience sizes. ClusterAudienceKit targets <200ms at 1M customers.
 
 See [BENCHMARKS.md](BENCHMARKS.md) for full methodology and step-by-step timing breakdowns.
 
@@ -169,8 +169,8 @@ AudienceSegmenter(
 
 Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-- Bug reports and feature requests: [GitHub Issues](https://github.com/Mullassery/AudiencePro/issues)
-- Questions and discussion: [GitHub Discussions](https://github.com/Mullassery/AudiencePro/discussions)
+- Bug reports and feature requests: [GitHub Issues](https://github.com/Mullassery/clusteraudiencekit/issues)
+- Questions and discussion: [GitHub Discussions](https://github.com/Mullassery/clusteraudiencekit/discussions)
 
 ## Authors
 

@@ -1,4 +1,4 @@
-#  AudiencePro - Build Complete
+#  ClusterAudienceKit - Build Complete
 
 **Build Date:** June 16, 2026  
 **Status:**  COMPLETE - Ready for Installation & Deployment  
@@ -16,8 +16,8 @@
 -  **MIT License** — Open source, permissive license
 
 ### 2. Installation Methods (All Working)
--  **pip** — `pip install audience-pro`
--  **uv** — `uv pip install audience-pro` 
+-  **pip** — `pip install clusteraudiencekit`
+-  **uv** — `uv pip install clusteraudiencekit` 
 -  **curl** — Direct wheel download and install
 -  **Scripts** — Automated installation (bash, PowerShell)
 -  **From Source** — Development setup with Rust compilation
@@ -64,7 +64,7 @@
 
 ### 7. Project Structure
 ```
-AudiencePro/
+ClusterAudienceKit/
 ├── src/
 │   ├── lib.rs                    # Library root
 │   ├── python.rs                 # PyO3 bindings
@@ -75,9 +75,9 @@ AudiencePro/
 │   │   └── mod.rs
 │   ├── streaming/                # Incremental updates
 │   └── utils/                    # Validation, conversions
-├── audience_pro/                 # Python package
+├── clusteraudiencekit/                 # Python package
 │   ├── __init__.py              # Module entry
-│   └── audience_pro.pyi         # Type stubs
+│   └── clusteraudiencekit.pyi         # Type stubs
 ├── tests/                        # Test suite
 ├── examples/                     # Usage examples
 ├── scripts/                      # Installation scripts
@@ -95,20 +95,20 @@ AudiencePro/
 
 ### Method 1: pip (Standard)
 ```bash
-pip install audience-pro
-python -c "from audience_pro import AudienceSegmenter; print('')"
+pip install clusteraudiencekit
+python -c "from clusteraudiencekit import AudienceSegmenter; print('')"
 ```
 
 ### Method 2: uv (Fast)
 ```bash
-uv pip install audience-pro
-uv run python -c "from audience_pro import AudienceSegmenter"
+uv pip install clusteraudiencekit
+uv run python -c "from clusteraudiencekit import AudienceSegmenter"
 ```
 
 ### Method 3: curl (Pre-built Wheel)
 ```bash
-curl -L -O https://github.com/Mullassery/AudiencePro/releases/download/v0.1.0/audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
-pip install ./audience_pro-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+curl -L -O https://github.com/Mullassery/clusteraudiencekit/releases/download/v0.1.0/clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
+pip install ./clusteraudiencekit-0.1.0-cp313-cp313-macosx_11_0_arm64.whl
 ```
 
 ### Method 4: Automated Scripts
@@ -129,7 +129,7 @@ bash scripts/install-curl.sh
 
 For 1M customer segmentation:
 
-| Operation | sklearn | AudiencePro | Speedup |
+| Operation | sklearn | ClusterAudienceKit | Speedup |
 |-----------|---------|------------|---------|
 | RFM Calculation | 150ms | 10-15ms | **15x** |
 | KMeans | 500ms | 25-50ms | **10-20x** |
@@ -254,7 +254,7 @@ Full benchmarks available in [docs/performance-comparison.md](docs/performance-c
 
 ##  Repository Information
 
-- **Repository:** https://github.com/Mullassery/AudiencePro
+- **Repository:** https://github.com/Mullassery/clusteraudiencekit
 - **License:** MIT
 - **Status:** Open Source
 - **Current Version:** 0.1.0 (Development)
@@ -269,7 +269,7 @@ Full benchmarks available in [docs/performance-comparison.md](docs/performance-c
 
 ##  Build Summary
 
-AudiencePro is **fully built and ready for**:
+ClusterAudienceKit is **fully built and ready for**:
 
  **Installation** — Via pip, uv, or curl  
  **Usage** — 13 methods, complete API  
@@ -287,10 +287,10 @@ Choose your installation method:
 
 ```bash
 # Most common
-pip install audience-pro
+pip install clusteraudiencekit
 
 # Fastest
-uv pip install audience-pro
+uv pip install clusteraudiencekit
 
 # Direct wheel
 bash scripts/install-curl.sh
@@ -301,16 +301,16 @@ bash scripts/install-from-source.sh
 
 Then verify:
 ```bash
-python -c "from audience_pro import AudienceSegmenter; print(' Ready!')"
+python -c "from clusteraudiencekit import AudienceSegmenter; print(' Ready!')"
 ```
 
 ---
 
 ##  Support & Questions
 
--  [Full Documentation](https://github.com/Mullassery/AudiencePro)
--  [Discussions](https://github.com/Mullassery/AudiencePro/discussions)
--  [Report Issues](https://github.com/Mullassery/AudiencePro/issues)
+-  [Full Documentation](https://github.com/Mullassery/clusteraudiencekit)
+-  [Discussions](https://github.com/Mullassery/clusteraudiencekit/discussions)
+-  [Report Issues](https://github.com/Mullassery/clusteraudiencekit/issues)
 
 ---
 

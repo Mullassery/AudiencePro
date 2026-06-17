@@ -1,12 +1,12 @@
 #!/bin/bash
-# Install AudiencePro from pre-built wheel using curl
+# Install ClusterAudienceKit from pre-built wheel using curl
 # Usage: bash install-curl.sh [platform] [python-version]
 # Example: bash install-curl.sh macos-arm64 3.13
 
 set -e
 
 PYTHON_CMD=${PYTHON_CMD:=python3}
-REPO="Mullassery/AudiencePro"
+REPO="Mullassery/clusteraudiencekit"
 RELEASE_TAG="v0.1.0"
 TEMP_DIR=$(mktemp -d)
 
@@ -14,7 +14,7 @@ TEMP_DIR=$(mktemp -d)
 PLATFORM="${1:=auto}"
 PY_VERSION="${2:=313}"
 
-echo "🚀 Installing AudiencePro from pre-built wheels..."
+echo "🚀 Installing ClusterAudienceKit from pre-built wheels..."
 echo ""
 
 # Auto-detect platform
@@ -60,7 +60,7 @@ case "$PLATFORM" in
         ;;
 esac
 
-WHEEL_NAME="audience_pro-0.1.0-${WHEEL_PATTERN}"
+WHEEL_NAME="clusteraudiencekit-0.1.0-${WHEEL_PATTERN}"
 DOWNLOAD_URL="https://github.com/${REPO}/releases/download/${RELEASE_TAG}/${WHEEL_NAME}"
 
 echo "📥 Downloading: $WHEEL_NAME"
@@ -97,10 +97,10 @@ echo ""
 echo "✅ Installation complete!"
 echo ""
 echo "Verify installation:"
-$PYTHON_CMD -c "from audience_pro import AudienceSegmenter; print('✅ AudiencePro imported successfully!')"
+$PYTHON_CMD -c "from clusteraudiencekit import AudienceSegmenter; print('✅ ClusterAudienceKit imported successfully!')"
 
 echo ""
 echo "📚 Next steps:"
-echo "1. Check the documentation: https://github.com/Mullassery/AudiencePro"
+echo "1. Check the documentation: https://github.com/Mullassery/clusteraudiencekit"
 echo "2. Run examples: python examples/basic_segmentation.py"
-echo "3. Import and use: from audience_pro import AudienceSegmenter"
+echo "3. Import and use: from clusteraudiencekit import AudienceSegmenter"

@@ -1,8 +1,8 @@
-# Performance Comparison: AudiencePro vs Alternatives
+# Performance Comparison: ClusterAudienceKit vs Alternatives
 
 ## Executive Summary
 
-AudiencePro is designed to be **10-25x faster** than scikit-learn for audience segmentation workloads while providing a **unified API** that combines RFM + clustering + metrics in a single library.
+ClusterAudienceKit is designed to be **10-25x faster** than scikit-learn for audience segmentation workloads while providing a **unified API** that combines RFM + clustering + metrics in a single library.
 
 ---
 
@@ -13,7 +13,7 @@ AudiencePro is designed to be **10-25x faster** than scikit-learn for audience s
 - CPU: Apple M1 Max (8-core)
 - RAM: 32GB
 - Python: 3.13.5
-- Libraries: scikit-learn 1.6, pandas 2.2, audience-pro 0.1.0
+- Libraries: scikit-learn 1.6, pandas 2.2, clusteraudiencekit 0.1.0
 
 **Methodology:**
 - Warm-up runs: 3 iterations
@@ -34,7 +34,7 @@ AudiencePro is designed to be **10-25x faster** than scikit-learn for audience s
 
 These are **projected** performance targets based on Rust implementations of similar algorithms. Actual Phase 1 implementation will be benchmarked upon release.
 
-| Operation | Size | sklearn | AudiencePro | Speedup | Notes |
+| Operation | Size | sklearn | ClusterAudienceKit | Speedup | Notes |
 |-----------|------|---------|------------|---------|-------|
 | **RFM Calculation** | 100 cust | 15ms | 1-2ms | **10x** | Parallelized across customers |
 | | 1000 cust | 150ms | 10-15ms | **15x** | Vector operations + SIMD |
@@ -51,7 +51,7 @@ These are **projected** performance targets based on Rust implementations of sim
 
 ### Memory Usage
 
-| Scenario | sklearn Stack | AudiencePro | Reduction |
+| Scenario | sklearn Stack | ClusterAudienceKit | Reduction |
 |----------|---------------|------------|-----------|
 | 100 customers | 50MB | 5MB | **90%** |
 | 1,000 customers | 500MB | 50MB | **90%** |
@@ -59,7 +59,7 @@ These are **projected** performance targets based on Rust implementations of sim
 
 **Key Differences:**
 - sklearn uses NumPy arrays (high overhead)
-- AudiencePro uses Arrow RecordBatches (zero-copy)
+- ClusterAudienceKit uses Arrow RecordBatches (zero-copy)
 - RFM calculation doesn't require separate DataFrame operations
 
 ---
@@ -91,9 +91,9 @@ rfm = pd.concat([recency, frequency, monetary], axis=1)
 # Additional overhead for Timestamp conversion and groupby
 ```
 
-**AudiencePro Approach** (built-in):
+**ClusterAudienceKit Approach** (built-in):
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 segmenter = AudienceSegmenter()
 # RFM calculation is part of fit()
@@ -122,7 +122,7 @@ kmeans = KMeans(n_clusters=4, n_init=10, random_state=42)
 labels = kmeans.fit_predict(scaled)  # ~500ms for 1K customers
 ```
 
-**AudiencePro Approach**:
+**ClusterAudienceKit Approach**:
 ```python
 segmenter = AudienceSegmenter(n_clusters=4)
 labels = segmenter.fit_predict(df)  # ~500ms total (including RFM)
@@ -152,7 +152,7 @@ silhouette = silhouette_score(scaled, labels)  # 2-5s for 1K
 davies_bouldin = davies_bouldin_score(scaled, labels)  # 1-3s for 1K
 ```
 
-**AudiencePro Approach**:
+**ClusterAudienceKit Approach**:
 ```python
 silhouette = segmenter.silhouette_score()      # 150-200ms
 davies_bouldin = segmenter.davies_bouldin_score()  # 120-150ms
@@ -195,9 +195,9 @@ profiles = get_segment_profiles(transactions, labels)
 # Total: 8-18 seconds
 ```
 
-**AudiencePro Approach** (<1 second):
+**ClusterAudienceKit Approach** (<1 second):
 ```python
-from audience_pro import AudienceSegmenter
+from clusteraudiencekit import AudienceSegmenter
 
 segmenter = AudienceSegmenter(n_clusters=4)
 segments = segmenter.fit_predict(transactions)     # <500ms total
@@ -231,7 +231,7 @@ silhouette = segmenter.silhouette_score()           # cached
 **100 Customers:**
 ```
 ┌─────────────────┬──────────┬──────────┐
-│ Operation       │ sklearn  │ AudiencePro │
+│ Operation       │ sklearn  │ ClusterAudienceKit │
 ├─────────────────┼──────────┼──────────┤
 │ RFM + normalize │ 165ms    │ 15ms     │
 │ KMeans          │ 50ms     │ 10ms     │
@@ -246,7 +246,7 @@ silhouette = segmenter.silhouette_score()           # cached
 **1,000 Customers:**
 ```
 ┌─────────────────┬──────────┬──────────┐
-│ Operation       │ sklearn  │ AudiencePro │
+│ Operation       │ sklearn  │ ClusterAudienceKit │
 ├─────────────────┼──────────┼──────────┤
 │ RFM + normalize │ 1,650ms  │ 50ms     │
 │ KMeans          │ 500ms    │ 40ms     │
@@ -261,7 +261,7 @@ silhouette = segmenter.silhouette_score()           # cached
 **10,000 Customers:**
 ```
 ┌─────────────────┬──────────┬──────────┐
-│ Operation       │ sklearn  │ AudiencePro │
+│ Operation       │ sklearn  │ ClusterAudienceKit │
 ├─────────────────┼──────────┼──────────┤
 │ RFM + normalize │ 16,500ms │ 500ms    │
 │ KMeans          │ 5,000ms  │ 400ms    │
@@ -275,7 +275,7 @@ silhouette = segmenter.silhouette_score()           # cached
 
 ---
 
-## Why AudiencePro is Faster
+## Why ClusterAudienceKit is Faster
 
 ### 1. Language Choice (Rust)
 - No GIL (Global Interpreter Lock)
@@ -311,9 +311,9 @@ silhouette = segmenter.silhouette_score()           # cached
 
 ## Trade-offs
 
-### What AudiencePro Trades for Speed
+### What ClusterAudienceKit Trades for Speed
 
-| Feature | sklearn | AudiencePro | Notes |
+| Feature | sklearn | ClusterAudienceKit | Notes |
 |---------|---------|------------|-------|
 | Algorithm Variety |  15+ algorithms |  KMeans, K-Prototypes | Focused on segmentation |
 | Customization |  High |  Medium | Sensible defaults |
@@ -328,7 +328,7 @@ silhouette = segmenter.silhouette_score()           # cached
 - Research/experimentation phase
 - Pure Python requirement
 
-**Use AudiencePro if:**
+**Use ClusterAudienceKit if:**
 - Audience segmentation is your use case
 - Performance is critical
 - Processing large datasets (1M+ customers)
@@ -339,7 +339,7 @@ silhouette = segmenter.silhouette_score()           # cached
 
 ## Conclusion
 
-AudiencePro achieves **10-25x performance improvement** over scikit-learn through:
+ClusterAudienceKit achieves **10-25x performance improvement** over scikit-learn through:
 
 1. **Language** — Rust instead of Python
 2. **Data Layout** — Arrow columnar format
@@ -347,7 +347,7 @@ AudiencePro achieves **10-25x performance improvement** over scikit-learn throug
 4. **Algorithm Specialization** — Optimized for segmentation
 5. **API Unification** — Single call vs multiple imports
 
-For audience segmentation workloads, AudiencePro is the clear performance winner while maintaining an intuitive, sklearn-compatible API.
+For audience segmentation workloads, ClusterAudienceKit is the clear performance winner while maintaining an intuitive, sklearn-compatible API.
 
 ---
 

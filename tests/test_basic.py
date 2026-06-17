@@ -1,4 +1,4 @@
-"""Basic integration tests for AudiencePro."""
+"""Basic integration tests for ClusterAudienceKit."""
 
 import pytest
 import pandas as pd
@@ -25,14 +25,14 @@ def sample_transactions():
 
 
 def test_import():
-    """Test that AudiencePro can be imported."""
-    from audience_pro import AudienceSegmenter
+    """Test that ClusterAudienceKit can be imported."""
+    from clusteraudiencekit import AudienceSegmenter
     assert AudienceSegmenter is not None
 
 
 def test_segmenter_creation():
     """Test creating a segmenter instance."""
-    from audience_pro import AudienceSegmenter
+    from clusteraudiencekit import AudienceSegmenter
 
     segmenter = AudienceSegmenter(method="rfm_kmeans", n_clusters=4)
     assert segmenter is not None
@@ -42,7 +42,7 @@ def test_fit_predict(sample_transactions):
     """Test fit and predict workflow."""
     pytest.skip("Implementation in progress")
 
-    from audience_pro import AudienceSegmenter
+    from clusteraudiencekit import AudienceSegmenter
 
     segmenter = AudienceSegmenter(method="rfm_kmeans", n_clusters=4)
     segmenter.fit(sample_transactions)

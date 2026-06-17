@@ -1,12 +1,12 @@
 # Troubleshooting Guide
 
-Solutions for common AudiencePro issues.
+Solutions for common ClusterAudienceKit issues.
 
 ---
 
 ## Installation Issues
 
-### Error: "ModuleNotFoundError: No module named 'audience_pro'"
+### Error: "ModuleNotFoundError: No module named 'clusteraudiencekit'"
 
 **Cause:** Package not installed or installed in wrong environment
 
@@ -14,10 +14,10 @@ Solutions for common AudiencePro issues.
 
 ```bash
 # 1. Check if installed
-pip show audience-pro
+pip show clusteraudiencekit
 
 # 2. If not installed, install it
-pip install audience-pro
+pip install clusteraudiencekit
 
 # 3. If installed but not found, check Python path
 python -c "import sys; print(sys.path)"
@@ -29,8 +29,8 @@ which python  # Should show venv path
 **Note:** Don't import from the source directory. Work from a different directory:
 
 ```bash
-cd ~  # Leave the AudiencePro source directory
-python -c "from audience_pro import AudienceSegmenter"
+cd ~  # Leave the ClusterAudienceKit source directory
+python -c "from clusteraudiencekit import AudienceSegmenter"
 ```
 
 ---
@@ -60,10 +60,10 @@ python -c "from audience_pro import AudienceSegmenter"
 python --version
 
 # Install compatible version
-pip install --upgrade audience-pro
+pip install --upgrade clusteraudiencekit
 
 # Or specify Python version
-pip install audience-pro -v
+pip install clusteraudiencekit -v
 ```
 
 Supported versions: Python 3.8 - 3.13
@@ -430,11 +430,11 @@ If you can't find a solution:
 
 1. **Check the examples:** `examples/` directory
 2. **Read the documentation:** `docs/api-reference.md`
-3. **Open an issue:** https://github.com/Mullassery/AudiencePro/issues
+3. **Open an issue:** https://github.com/Mullassery/clusteraudiencekit/issues
 
 When reporting issues, include:
 - Python version: `python --version`
-- AudiencePro version: `pip show audience-pro`
+- ClusterAudienceKit version: `pip show clusteraudiencekit`
 - Error message (full traceback)
 - Minimal reproducible example
 - DataFrame shape and sample data
