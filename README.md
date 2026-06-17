@@ -211,6 +211,37 @@ AudienceSegmenter(
 - [ ] Kafka input — ingest streaming events and update segments without batch jobs
 - [ ] Export to CRM — direct push of segment assignments to Salesforce, HubSpot, Braze
 
+**Ad platform exports**
+- [ ] Google Ads — upload segment lists to Google Customer Match (CRM, engagement, similar audiences)
+- [ ] Meta Ads — export to Meta Conversions API and Audience Manager (pixel events, custom audiences)
+- [ ] Amazon Ads — push audiences to Amazon DSP and sponsored ads platform
+- [ ] TikTok Ads — segment export to TikTok Custom Audience API
+- [ ] LinkedIn Ads — matched audience export for B2B account-based marketing
+
+**Data warehouse & CDP**
+- [ ] Segment.com integration — push segments to 100+ downstream tools via Segment protocol
+- [ ] mParticle — native export with segment attributes and metadata
+- [ ] Customer Data Platforms (Treasure Data, Tealium, Lytics) — streaming and batch sync
+- [ ] Snowflake native app — segment creation and management within Snowflake UI
+
+**Marketing automation & email**
+- [ ] Klaviyo — export audiences for email campaigns, SMS, push notifications with segment traits
+- [ ] Mailchimp — segment sync with dynamic tag assignment
+- [ ] SendGrid — audience upload for email marketing workflows
+- [ ] Iterable — streaming segment membership updates for triggered campaigns
+
+**Advanced audience features**
+- [ ] Lookalike audience generation — find similar high-value customers outside current segments
+- [ ] Segment expansion — identify upsell/cross-sell opportunities within each segment
+- [ ] Churn prediction within segments — risk-score customers by segment for retention campaigns
+- [ ] Real-time segment API — serve `customer_id → segment` membership via REST/gRPC
+
+**Privacy & compliance**
+- [ ] Differential privacy — add noise to segments to protect individual privacy
+- [ ] K-anonymity enforcement — ensure segments contain at least k customers
+- [ ] GDPR/CCPA cleanup — auto-remove opted-out customer IDs from segments
+- [ ] Audit logs — track all segment exports and access for compliance
+
 **Output and observability**
 - [ ] Segment naming — auto-label segments ("high-value loyalists", "at-risk") based on profile stats
 - [ ] Cohort tracking — compare how individual customers move between segments over time
@@ -230,6 +261,7 @@ Pull requests: read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 ## License
 
 [MIT](LICENSE)
+
 
 
 
