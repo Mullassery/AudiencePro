@@ -1,8 +1,8 @@
 # ClusterAudienceKit
 
-**Customer segmentation for marketing data pipelines — RFM analysis, clustering, segment profiling, and streaming updates in one import.**
+**A Python library for customer segmentation in marketing data pipelines — RFM analysis, clustering, segment profiling, and streaming updates in one import.**
 
-If you've built customer segmentation before, you've probably glued together scikit-learn, pandas, and lifetimes, written hundreds of lines of boilerplate, and still ended up with a pipeline that can't handle 100k customers in any reasonable time. ClusterAudienceKit replaces that stack with a single, fast library built in Rust.
+ClusterAudienceKit is a Python library that replaces the scikit-learn + pandas + lifetimes stack for customer segmentation. If you've built this before, you've probably written hundreds of lines of boilerplate glue and still ended up with a pipeline that can't handle 100k customers in any reasonable time. ClusterAudienceKit does it in a single import, backed by a Rust engine.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
@@ -151,3 +151,4 @@ Pull requests: read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 ## License
 
 [MIT](LICENSE)
+
