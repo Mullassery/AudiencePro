@@ -138,6 +138,32 @@ AudienceSegmenter(
 | [docs/architecture.md](docs/architecture.md) | Design decisions |
 | [examples/](examples/) | Runnable scripts |
 
+## Roadmap
+
+**Segmentation**
+- [ ] Customer lifetime value (CLV) — BG/NBD and Gamma-Gamma models, matching `lifetimes` parity
+- [ ] DBSCAN and HDBSCAN — density-based clustering for audiences with irregular shapes
+- [ ] Hierarchical clustering — dendrogram output for exploratory segment discovery
+- [ ] Auto-cluster selection — silhouette + elbow method to recommend optimal `n_clusters`
+- [ ] Geographic segmentation — cluster on lat/lon fields with haversine distance
+
+**RFM and features**
+- [ ] Engagement RFM — adapt RFM for non-transactional signals (email opens, app sessions, ad clicks)
+- [ ] Weighted RFM — configurable weights per dimension rather than equal thirds
+- [ ] Custom feature columns — include arbitrary numeric columns alongside RFM in clustering
+
+**Pipeline integrations**
+- [ ] dbt macro — expose `segment_profiles()` as a dbt model after each run
+- [ ] Airflow operator — `AudienceSegmenterOperator` for scheduled retraining
+- [ ] Kafka input — ingest streaming events and update segments without batch jobs
+- [ ] Export to CRM — direct push of segment assignments to Salesforce, HubSpot, Braze
+
+**Output and observability**
+- [ ] Segment naming — auto-label segments ("high-value loyalists", "at-risk") based on profile stats
+- [ ] Cohort tracking — compare how individual customers move between segments over time
+- [ ] HTML segment report — shareable one-page visual summary for marketing teams
+- [ ] Prometheus metrics — expose segment health and drift as scrapeable endpoints
+
 ## Contributing
 
 Bug reports and feature requests: [GitHub Issues](https://github.com/Mullassery/ClusterAudienceKit/issues)  
@@ -151,4 +177,5 @@ Pull requests: read [CONTRIBUTING.md](CONTRIBUTING.md) first.
 ## License
 
 [MIT](LICENSE)
+
 
