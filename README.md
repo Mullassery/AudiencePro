@@ -1,8 +1,19 @@
 # ClusterAudienceKit
 
-**Python library for customer segmentation in Martech and marketing data pipelines.**
+**The ONLY Python library built for customer segmentation in marketing automation**
 
-RFM analysis, clustering, segment profiling, and streaming updates — one `pip install`, one import, one API. No more stitching together sklearn, pandas, and lifetimes for every project.
+RFM analysis, clustering, segment profiling, and streaming updates — one `pip install`, one import, one API. Stop stitching together sklearn, pandas, and lifetimes for every marketing project.
+
+## Why Star ClusterAudienceKit?
+
+- **First MarTech-focused library** — Built for marketing engineers and data scientists in CDP/marketing ops
+- **No more glue code** — All-in-one: RFM analysis + KMeans clustering + segment profiling + streaming updates
+- **Production-ready** — Scales to millions of customers, handles real CDP workflows
+- **Streaming support** — Update segments as new transactions arrive, not batch-only
+- **Drift detection** — Know when segment quality degrades, automatic alerts
+- **MIT licensed** — Free for commercial use
+
+Star if you're tired of rebuilding customer segmentation for every campaign or if ClusterAudienceKit powers your CDP.
 
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
