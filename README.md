@@ -7,6 +7,7 @@ ClusterAudienceKit is a Python library that replaces the scikit-learn + pandas +
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%20%7C%203.9%20%7C%203.10%20%7C%203.11%20%7C%203.12%20%7C%203.13-blue)](pyproject.toml)
 [![PyPI](https://img.shields.io/badge/pypi-clusteraudiencekit-orange)](https://pypi.org/project/clusteraudiencekit/)
+[![GitHub Issues](https://img.shields.io/github/issues/Mullassery/ClusterAudienceKit)](https://github.com/Mullassery/ClusterAudienceKit/issues)
 
 ## Install
 
@@ -248,11 +249,17 @@ AudienceSegmenter(
 - [ ] HTML segment report — shareable one-page visual summary for marketing teams
 - [ ] Prometheus metrics — expose segment health and drift as scrapeable endpoints
 
+## Community
+
+- **GitHub Issues** — [Report bugs and request features](https://github.com/Mullassery/ClusterAudienceKit/issues)
+- **GitHub Discussions** — [Questions and best practices](https://github.com/Mullassery/ClusterAudienceKit/discussions)
+- **Code of Conduct** — [Be respectful and constructive](./CODE_OF_CONDUCT.md)
+
 ## Contributing
 
-Bug reports and feature requests: [GitHub Issues](https://github.com/Mullassery/ClusterAudienceKit/issues)  
-Questions and discussion: [GitHub Discussions](https://github.com/Mullassery/ClusterAudienceKit/discussions)  
-Pull requests: read [CONTRIBUTING.md](CONTRIBUTING.md) first.
+Pull requests welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for development setup and guidelines.
+
+For security issues, see [SECURITY.md](SECURITY.md).
 
 ## Author
 
